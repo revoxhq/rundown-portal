@@ -1,32 +1,27 @@
-import React, { useState } from 'react';
+import React, { Children, useState } from 'react';
 import { AppstoreOutlined, MailOutlined, SettingOutlined } from '@ant-design/icons';
 import { Menu } from 'antd';
+import { Link } from 'react-router-dom';
 
 
 const items = [
     {
         label: (
-            <a href="/home">
-                Home
-            </a>
+            <CustomLink to={'/home'}>Home</CustomLink>
         ),
         key: 'mail',
         icon: <MailOutlined />,
     },
     {
         label: (
-            <a href="/assets">
-                Assets
-            </a>
+            <CustomLink to={'/assets'}>Assets</CustomLink>
         ),
         key: 'app',
         icon: <AppstoreOutlined />,
     },
     {
         label: (
-            <a href="/documents">
-                Documents
-            </a>
+            <CustomLink to={'/documents'}>Documents</CustomLink>
         ),
         key: 'SubMenu',
         icon: <SettingOutlined />,
@@ -43,4 +38,11 @@ export const NavBar = () => {
     return (
         <Menu onClick={onClick} selectedKeys={[current]} mode="horizontal" items={items} />
     );
+}
+function CustomLink({ to, children, ...props }) {
+    return (
+        <Link to={to} {...props}>
+            {children}
+        </Link>
+    )
 }
