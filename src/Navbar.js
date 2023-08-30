@@ -9,21 +9,28 @@ const items = [
         label: (
             <CustomLink to={'/home'}>Home</CustomLink>
         ),
-        key: 'mail',
+        key: 'home',
         icon: <MailOutlined />,
     },
     {
         label: (
             <CustomLink to={'/assets'}>Assets</CustomLink>
         ),
-        key: 'app',
+        key: 'assets',
+        icon: <AppstoreOutlined />,
+    },
+    {
+        label: (
+            <CustomLink to={'/resources'}>Resources</CustomLink>
+        ),
+        key: 'resources',
         icon: <AppstoreOutlined />,
     },
     {
         label: (
             <CustomLink to={'/documents'}>Documents</CustomLink>
         ),
-        key: 'SubMenu',
+        key: 'documents',
         icon: <SettingOutlined />,
     },
 ];

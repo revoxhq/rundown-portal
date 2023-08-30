@@ -1,13 +1,15 @@
 
 import './App.css';
 
-import { AssetLibrary } from "./pages/AssetLibrary"
-import { DocumentLibrary } from "./pages/DocumentLibrary"
+import { AssetLibrary } from "./pages/AssetLibrary/AssetLibrary"
+import { DocumentLibrary } from "./pages/DocumentLibrary/DocumentLibrary"
+import { ResourceLibrary } from "./pages/ResourceLibrary/ResourceLibrary"
+import { AddResource } from "./pages/ResourceLibrary/AddResource"
 import { Home } from "./pages/Home"
 import { Login } from "./pages/Login"
-
+import { NavBar } from './Navbar';
+import { Col, Row } from 'antd';
 import { Route, Routes } from 'react-router-dom';
-
 
 function App() {
 
@@ -16,12 +18,19 @@ function App() {
 
   return (
     <div className="App">
-      <Routes>
-        <Route path='/' element={<Login />} />
-        <Route path='/home' element={<Home />} />
-        <Route path='/assets' element={<AssetLibrary />} />
-        <Route path='/documents' element={<DocumentLibrary />} />
-      </Routes>
+      <NavBar></NavBar>
+      <Row type="flex" justify="center">
+        <Col span={24}>
+          <Routes>
+            <Route path='/' element={<Login />} />
+            <Route path='/home' element={<Home />} />
+            <Route path='/assets' element={<AssetLibrary />} />
+            <Route path='/documents' element={<DocumentLibrary />} />
+            <Route path='/resources' element={<ResourceLibrary />} />
+            <Route path='/resources/add' element={<AddResource />} />
+          </Routes>
+        </Col>
+      </Row>
     </div>
   );
 }
