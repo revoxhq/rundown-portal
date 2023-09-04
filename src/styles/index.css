@@ -1,3 +1,18 @@
+.d-flex{
+    display: flex;
+}
+.justify-space-between{
+    justify-content: space-between;
+}
+.justify-center{
+    justify-content: center;
+}
+
+.m-t-50{
+    margin-top: 50px;
+}
+
+
 .resources{
     justify-content: center;
     display: flex;
@@ -11,4 +26,9 @@
     width: 600px;
     /* padding-left: 100px;
     margin-left: 100px; */
+}
+
+.resource-card{
+    max-height: 500px;
+    overflow: scroll;
 }

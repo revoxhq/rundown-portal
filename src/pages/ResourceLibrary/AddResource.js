@@ -22,7 +22,8 @@ export const AddResource = () => {
                 'type': values.resourceType,
                 'link': values.url,
                 'access-level': values.accesslevel,
-                'project': values.project
+                'project': values.project,
+                'date-updated': Date.now()
             })
         } catch (err) {
             console.error(err)
@@ -54,8 +55,8 @@ export const AddResource = () => {
                     }}
                     initialValues={{
                         accesslevel: 3,
-                        resourceType: "documantation",
-                        project: "internal",
+                        resourceType: "Documentation",
+                        project: "Internal",
                     }}
                     onFinish={onFinish}
                     onFinishFailed={onFinishFailed}
@@ -95,13 +96,14 @@ export const AddResource = () => {
                         label="Select Resource Type"
                         style={{ marginBottom: "30px" }}
                     >
-                        <Select placeholder="Select type of resource" defaultValue={'documantation'}>
-                            <Option value="documantation">Documantation</Option>
-                            <Option value="worksheet">Worksheet</Option>
-                            <Option value="moodboard">Moodboard</Option>
-                            <Option value="artwork">Artwork</Option>
-                            <Option value="folder">Folder</Option>
-                            <Option value="other">Other</Option>
+                        <Select placeholder="Select type of resource" defaultValue={'documentation'}>
+                            <Option value="Documentation">Documentation</Option>
+                            <Option value="Worksheet">Worksheet</Option>
+                            <Option value="Moodboard">Moodboard</Option>
+                            <Option value="Artwork">Artwork</Option>
+                            <Option value="Audio">Audio</Option>
+                            <Option value="Folder">Folder</Option>
+                            <Option value="Other">Other</Option>
                         </Select>
                     </Form.Item>
                     <Form.Item
@@ -109,12 +111,12 @@ export const AddResource = () => {
                         label="Select Project"
                         style={{ marginBottom: "30px" }}
                     >
-                        <Select placeholder="Select type of resource" defaultValue={'internal'}>
-                            <Option value="internal">Internal</Option>
-                            <Option value="spiral">Spiral</Option>
-                            <Option value="starwalker">Starwalker</Option>
-                            <Option value="goodnessgame">Goodness Game</Option>
-                            <Option value="other">Other</Option>
+                        <Select placeholder="Select type of resource" defaultValue={'Internal'}>
+                            <Option value="Internal">Internal</Option>
+                            <Option value="Spiral">Spiral</Option>
+                            <Option value="Starwalker">Starwalker</Option>
+                            <Option value="Goodnessgame">Goodness Game</Option>
+                            <Option value="Other">Other</Option>
                         </Select>
                     </Form.Item>
                     <Form.Item
