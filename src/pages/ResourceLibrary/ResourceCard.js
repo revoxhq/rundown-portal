@@ -1,10 +1,11 @@
 import { Card, List } from 'antd';
 import { EditOutlined } from '@ant-design/icons';
+import { Link } from 'react-router-dom';
 
 export const ResourceCard = ({ titleName, cardData, avatarIcon }) => {
     return (
 
-        <Card className='resource-card' title={titleName} extra={<a href="#">More</a>} style={{ width: 300 }} hoverable={true}>
+        <Card className='resource-card' title={titleName} extra={<Link to="/resources/type" state={{ cardData: cardData }}>More</Link> } style={{ width: 300 }} hoverable={true}>
             <List
                 itemLayout="horizontal"
                 dataSource={cardData}

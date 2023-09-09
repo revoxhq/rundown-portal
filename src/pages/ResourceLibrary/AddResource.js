@@ -21,7 +21,7 @@ export const AddResource = () => {
                 'description': values.description,
                 'type': values.resourceType,
                 'link': values.url,
-                'access-level': values.accesslevel,
+                'accessLevel': values.accesslevel,
                 'project': values.project,
                 'date-updated': Date.now()
             })

@@ -1,25 +1,31 @@
-.d-flex{
+.d-flex {
     display: flex;
 }
-.justify-space-between{
+
+.justify-space-between {
     justify-content: space-between;
 }
-.justify-center{
+
+.justify-center {
     justify-content: center;
 }
 
-.m-t-50{
+.m-t-50 {
     margin-top: 50px;
+}
+.m-b-50 {
+    margin-bottom: 50px;
 }
 
 
-.resources{
+.resources {
     justify-content: center;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
-.form-container{
+
+.form-container {
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -28,7 +34,17 @@
     margin-left: 100px; */
 }
 
-.resource-card{
+.resource-card {
     max-height: 500px;
     overflow: scroll;
+}
+
+.container {
+    width: 100%;
+    display: flex;
+    align-self: center;
+    margin: auto;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
