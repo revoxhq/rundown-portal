@@ -1,0 +1,47 @@
+.d-flex {
+    display: flex;
+}
+
+.justify-space-between {
+    justify-content: space-between;
+}
+
+.justify-center {
+    justify-content: center;
+}
+
+.m-t-50 {
+    margin-top: 50px;
+}
+
+.m-b-50 {
+    margin-bottom: 50px;
+}
+
+.m-l-10 {
+    margin-left: 10px;
+}
+
+.p-0 {
+    padding: 0px !important;
+}
+.m-t-0{
+    margin-top: 0px;
+}
+.m-b-5{
+    margin-bottom: 5px;
+}
+.m-b-10{
+    margin-bottom: 10px;
+}
+.m-b-15{
+    margin-bottom: 15px;
+}
+.m-r-5{
+    margin-right: 5px;
+}
+.m-r-10{
+    margin-right: 10px;
+}
+
+

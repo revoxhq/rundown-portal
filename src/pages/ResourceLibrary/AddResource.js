@@ -1,5 +1,4 @@
 import { Button, Form, Input, Slider, Select, Typography } from 'antd';
-import '../../styles/index.css'
 import { addDoc, collection } from 'firebase/firestore';
 import { db } from "../../config/firebase";
 
