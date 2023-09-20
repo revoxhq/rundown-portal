@@ -21,6 +21,9 @@
     /* padding-left: 100px;
     margin-left: 100px; */
 }
+.form-container-assets .ant-form{
+    width: 100%;
+}
 
 .resource-card {
     max-height: 500px;
@@ -70,6 +73,7 @@
     padding-bottom: 0px;
     flex-direction: column;
     border-top-right-radius: 10px;
+    justify-content: space-between;
 }
 
 .modal-inner .modal-right .steps-assignee-wrapper {
@@ -99,7 +103,8 @@
 }
 
 .create-asset-modal .ant-modal-footer {
-    padding: 24px 20px;
+    padding: 0px 20px;
+    /* padding-top: 0px; */
 }
 
 .button-wrapper {
@@ -116,11 +121,7 @@
     justify-content: space-between;
 }
 
-.create-asset-modal .ant-modal-footer{
-    padding-top: 0px;
-    padding-bottom: 15px;
-}
 
 .tags-wrapper{
-    max-width: 500px;
+    max-width: 600px;
 }
