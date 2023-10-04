@@ -5,7 +5,7 @@ import { addDoc, collection } from 'firebase/firestore';
 import { db } from "../../config/firebase";
 import { PlusCircleOutlined, CheckOutlined, UserOutlined, MehOutlined, PlusOutlined } from '@ant-design/icons';
 
-export const AssetLibraryModal = () => {
+export const AnimationAssetLibraryModal = () => {
 
     const [pipelineAssignees, setPipelineAssignees] = useState({
         "Writing": 'nan',
@@ -27,8 +27,11 @@ export const AssetLibraryModal = () => {
     const { TextArea } = Input;
     const [form] = Form.useForm();
     const [currentStep, setCurrentProgress] = useState(0);
-    const [currentClient, setCurrentClient] = useState("Revox");
     const [currentProgress, saveUpdatedProgress] = useState({});
+    const [currentClient, setCurrentClient] = useState("Revox");
+
+
+
     const showModal = () => {
         setOpen(true);
     };
@@ -77,7 +80,7 @@ export const AssetLibraryModal = () => {
         "Tropical",
         "Mountainous"];
     //------------------------
-    const resourceListRef = collection(db, "inhouse-assets");
+    const resourceListRef = collection(db, "animation-assets ");
 
     const onFinish = (values) => {
         console.log('Success:', values);
@@ -94,7 +97,6 @@ export const AssetLibraryModal = () => {
                 'project': values.project,
                 'assettype': values.assettype,
                 'assetLink': values.assetUrl,
-                'conceptArtUrl': values.cocneptUrl,
                 'priority': values.priority,
                 'dateUpdated': Date.now(),
                 'pipeline': JSON.stringify(pipelineAssignees),
@@ -102,7 +104,7 @@ export const AssetLibraryModal = () => {
                 'client': currentClient,
                 'specialNotes': values.specialnotes,
                 'currentProgress': currentProgress,
-                "group": "inHouse"
+                "group": "Animation"
             })
         } catch (err) {
             console.error(err)
@@ -165,6 +167,7 @@ export const AssetLibraryModal = () => {
         // console.log('Change:', e.target.value);
     };
 
+    
     const onProjectChange = (e) => {
         switch (e) {
             case "Internal":
@@ -189,6 +192,7 @@ export const AssetLibraryModal = () => {
     };
 
 
+
     //----------------------
     const [selectedTags, setSelectedTags] = useState([]);
     const handleChange = (tag, checked) => {
@@ -202,8 +206,8 @@ export const AssetLibraryModal = () => {
 
     return (
         <div className="asset-library">
-            <Button type="primary" onClick={showModal}>
-                <PlusOutlined />In House
+            <Button onClick={showModal}>
+            <PlusOutlined /> Animation
             </Button>
             <Modal
                 title=""
@@ -296,28 +300,24 @@ export const AssetLibraryModal = () => {
 
                                 <Form.Item
                                     name="assettype"
-                                    label="Asset Type"
+                                    label="Animation Type"
                                 >
-                                    <Select placeholder="Select Asset Type" defaultValue={'Prop'}>
+                                    <Select placeholder="Select Animation Type" defaultValue={'Prop'}>
                                         <Option value="prop">Prop</Option>
-                                        <Option value="Electronic">Electronic</Option>
                                         <Option value="Vehicle">Vehicle</Option>
                                         <Option value="Character">Character</Option>
                                         <Option value="Weapon">Weapon</Option>
-                                        <Option value="Furniture">Furniture</Option>
                                         <Option value="Foliage">Foliage</Option>
-                                        <Option value="Environment">Environment</Option>
-                                        <Option value="Clothing">Clothing</Option>
                                         <Option value="Other">Other</Option>
                                     </Select>
                                 </Form.Item>
 
                                 <Form.Item
-                                    name="cocneptUrl"
-                                    label="Concept Art URL"
-                                    rules={[{ required: true }, { type: 'url', warningOnly: true }, { type: 'string', min: 6 }]}
+                                    name="scriptUrl"
+                                    label="Animation Script URL"
+                                    rules={[{ type: 'string', min: 6 }]}
                                 >
-                                    <Input addonBefore="G-Drive Link" placeholder="Concept Art URL" />
+                                    <Input addonBefore="Script Link" placeholder="Script URL" />
                                 </Form.Item>
 
 
@@ -404,7 +404,7 @@ export const AssetLibraryModal = () => {
                                             title: 'Concept Art',
                                             description: (
                                                 <div className='steps-assignee-wrapper'>
-                                                    <Text type="secondary">Concept Art drawn</Text>
+                                                    <Text type="secondary">Gathered references</Text>
                                                     <Select placeholder="Select Assignee" defaultValue={'NotAssigned'} bordered={false} onChange={value => onAssigned(2, 'Concept-Art', value)}>
                                                         <Option value="NotAssigned"><MehOutlined /> Not Assigned</Option>
                                                         <Option value="Buddhika"><UserOutlined /> Buddhika</Option>
@@ -423,7 +423,7 @@ export const AssetLibraryModal = () => {
                                             title: 'Rough 3D',
                                             description: (
                                                 <div className='steps-assignee-wrapper'>
-                                                    <Text type="secondary">Low poly 3D model</Text>
+                                                    <Text type="secondary">Block Animation</Text>
                                                     <Select placeholder="Select Assignee" defaultValue={'NotAssigned'} bordered={false} onChange={value => onAssigned(3, 'LowPoly-3D', value)}>
                                                         <Option value="NotAssigned"><MehOutlined /> Not Assigned</Option>
                                                         <Option value="Buddhika"><UserOutlined /> Buddhika</Option>
@@ -442,7 +442,7 @@ export const AssetLibraryModal = () => {
                                             title: 'Detailed 3D',
                                             description: (
                                                 <div className='steps-assignee-wrapper'>
-                                                    <Text type="secondary">A higher 3D Model</Text>
+                                                    <Text type="secondary">Refined Animation</Text>
                                                     <Select placeholder="Select Assignee" defaultValue={'NotAssigned'} bordered={false} onChange={value => onAssigned(4, 'HighPoly-3D', value)}>
                                                         <Option value="NotAssigned"><MehOutlined /> Not Assigned</Option>
                                                         <Option value="Buddhika"><UserOutlined /> Buddhika</Option>
@@ -461,7 +461,7 @@ export const AssetLibraryModal = () => {
                                             title: 'UV Map',
                                             description: (
                                                 <div className='steps-assignee-wrapper'>
-                                                    <Text type="secondary">UV Mapping Complete</Text>
+                                                    <Text type="secondary">Playtest</Text>
                                                     <Select placeholder="Select Assignee" defaultValue={'NotAssigned'} bordered={false} onChange={value => onAssigned(5, 'UV-Map', value)}>
                                                         <Option value="NotAssigned"><MehOutlined /> Not Assigned</Option>
                                                         <Option value="Buddhika"><UserOutlined /> Buddhika</Option>
@@ -480,7 +480,7 @@ export const AssetLibraryModal = () => {
                                             title: 'Texture',
                                             description: (
                                                 <div className='steps-assignee-wrapper'>
-                                                    <Text type="secondary">Textured</Text>
+                                                    <Text type="secondary">Finalized</Text>
                                                     <Select placeholder="Select Assignee" defaultValue={'NotAssigned'} bordered={false} onChange={value => onAssigned(6, 'Texture', value)}>
                                                         <Option value="NotAssigned"><MehOutlined /> Not Assigned</Option>
                                                         <Option value="Buddhika"><UserOutlined /> Buddhika</Option>
@@ -533,6 +533,7 @@ export const AssetLibraryModal = () => {
                                                 </div>
                                             ),
                                         },
+
                                     ]}
 
 

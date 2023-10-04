@@ -21,7 +21,8 @@
     /* padding-left: 100px;
     margin-left: 100px; */
 }
-.form-container-assets .ant-form{
+
+.form-container-assets .ant-form {
     width: 100%;
 }
 
@@ -112,16 +113,58 @@
     bottom: 0px;
     width: 100%;
 }
-.button-wrapper .inner{
+
+.button-wrapper .inner {
     display: flex;
     justify-content: space-between;
 }
-.button-wrapper .inner .confirm-btns{
+
+.button-wrapper .inner .confirm-btns {
     display: flex;
     justify-content: space-between;
 }
 
 
-.tags-wrapper{
+.tags-wrapper {
     max-width: 600px;
+}
+
+.modal-button-wrapper {
+    display: flex;
+    width: 1200px;
+    justify-content: flex-end;
+    padding: 30px 30px;
+}
+
+.modal-button-wrapper-inner {
+    display: flex;
+    flex-direction: row;
+    width: 400px;
+    justify-content: space-around;
+}
+.home-card{
+    margin-top: 50px;
+}
+.home-card .ant-card-cover{
+    display: flex;
+    justify-content: center;
+}
+.home-card img{
+    width: 150px !important;
+}
+.quicklink-cards-wrapper{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.quicklink-cards-wrapper .inner{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 1400px;
+    /* min-height: 100vh; */
+    align-content: space-evenly;
 }
