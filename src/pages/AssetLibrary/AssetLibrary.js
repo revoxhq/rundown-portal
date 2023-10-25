@@ -4,10 +4,13 @@ import { MarketplaceAssetLibraryModal } from "./MarketplaceAssetLibraryModal"
 import { AnimationAssetLibraryModal } from "./AnimationAssetLibraryModal"
 import { Typography, Tag, Button, Input } from 'antd';
 import { LinkOutlined, CheckCircleOutlined, DollarOutlined } from '@ant-design/icons';
-import { db } from "../../config/firebase";
+import { db, auth } from "../../config/firebase";
 import { getDocs, collection } from 'firebase/firestore'
+import { Navigate } from 'react-router-dom';
+
 const { Title, Text } = Typography;
 const { Search } = Input;
+
 
 export const AssetLibrary = () => {
     const inhouseAssetList = collection(db, "inhouse-assets");
@@ -15,6 +18,7 @@ export const AssetLibrary = () => {
     const animationAssetList = collection(db, "animation-assets ");
     const [allAssetData, setAssetData] = useState([]);
     const [assetSearchData, setSearchData] = useState([]);
+    const user = auth.currentUser;
 
     useEffect(() => {
         const getRefList = async () => {
@@ -54,6 +58,10 @@ export const AssetLibrary = () => {
 
         getRefList();
     }, []);
+
+    if (!user) {
+        return <Navigate to="/"  replace={true}/>
+    }
 
     const filterAllData = (allRefData) => {
         allRefData.forEach(list => {

@@ -101,9 +101,7 @@ export const MarketplaceAssetLibraryModal = () => {
                 'assettype': values.assettype,
                 'source': values.source,
                 'assetLink': values.assetURL,
-                'project': values.project,
                 'category': values.assetCategory,
-                'client': currentClient,
                 'dateUpdated': Date.now(),
                 'tags': selectedTags,
                 'specialNotes': values.specialnotes,
@@ -125,29 +123,6 @@ export const MarketplaceAssetLibraryModal = () => {
         // console.log('Change:', e.target.value);
     };
 
-    
-    const onProjectChange = (e) => {
-        switch (e) {
-            case "Internal":
-                setCurrentClient("Revox")
-                break;
-            case "Spiral":
-                setCurrentClient("Revox")
-                break;
-            case "Starwalker":
-                setCurrentClient("Marius")
-                break;
-            case "Goodness Game":
-                setCurrentClient("Foundation of Goodness")
-                break;
-            case "Other":
-                setCurrentClient("Unknown")
-                break;
-            default:
-                setCurrentClient("Unknown")
-                break;
-        }
-    };
 
 
 
@@ -218,7 +193,8 @@ export const MarketplaceAssetLibraryModal = () => {
                             priority: 3,
                             assettype: "Prop",
                             source: "epic",
-                            project: "Internal"
+                            project: "Internal",
+                            assetCategory:"3D Animation"
                         }}
                     >
                         <div className='modal-inner'>
@@ -256,18 +232,6 @@ export const MarketplaceAssetLibraryModal = () => {
                                     </Select>
                                 </Form.Item>
 
-                                <Form.Item
-                                    name="project"
-                                    label="Project"
-                                >
-                                    <Select placeholder="Select a project" defaultValue={'Internal'} onChange={onProjectChange}>
-                                        <Option value="Internal">Internal</Option>
-                                        <Option value="Spiral">Spiral</Option>
-                                        <Option value="Starwalker">Starwalker</Option>
-                                        <Option value="Goodnessgame">Goodness Game</Option>
-                                        <Option value="Other">Other</Option>
-                                    </Select>
-                                </Form.Item>
 
                                 <Form.Item
                                     name="assetCategory"

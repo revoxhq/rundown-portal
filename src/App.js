@@ -11,9 +11,9 @@ import { Login } from "./pages/Login"
 import { NavBar } from './Navbar';
 import { Col, Row } from 'antd';
 import { Route, Routes } from 'react-router-dom';
+import { auth } from "./config/firebase";
 
 function App() {
-
 
 
 
