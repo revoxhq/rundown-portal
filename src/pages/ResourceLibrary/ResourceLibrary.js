@@ -5,6 +5,8 @@ import { Button, Input, Col, Row, AutoComplete } from 'antd';
 import { SearchOutlined, ReadOutlined, PartitionOutlined, AudioOutlined, HighlightOutlined, FolderOpenOutlined, BarChartOutlined, CoffeeOutlined, UserOutlined } from '@ant-design/icons';
 import { Link } from 'react-router-dom';
 import { ResourceCard } from './ResourceCard';
+import { AddResource } from './AddResource';
+import { sort } from 'fast-sort';
 
 const { Search } = Input;
 
@@ -46,6 +48,27 @@ export const ResourceLibrary = () => {
     }, []);
 
 
+    const mannualRerenderDetails=()=>{
+        const getRefList = async () => {
+            try {
+                const data = await getDocs(resourceListRef);
+                const filteredRefData = data.docs.map((doc) => ({
+                    ...doc.data(),
+                    id: doc.id,
+                    key: doc.id
+                }))
+                filterData(filteredRefData);
+                setResourceData(filteredRefData);
+            }
+            catch (err) {
+                console.error(err)
+            }
+        }
+
+        getRefList();
+    }
+
+
     const renderTitle = (title) => (
         <span>
             {title}
@@ -61,7 +84,7 @@ export const ResourceLibrary = () => {
             </a>
         </span>
     );
-    const renderItem = (title,link) => ({
+    const renderItem = (title, link) => ({
         value: title,
         label: (
             <div
@@ -108,6 +131,9 @@ export const ResourceLibrary = () => {
     ];
 
     const filterData = (filteredData) => {
+
+        let unsortedFilteredData = filteredData;
+        let sortedFilteredData=sort(unsortedFilteredData).desc(u => u["date-updated"])
         setDocuments([]);
         setWorksheet([]);
         setMoodboard([]);
@@ -115,41 +141,67 @@ export const ResourceLibrary = () => {
         setAudio([]);
         setFolder([]);
         setOthers([]);
+        let document_count = 0;
+        let worksheet_count = 0;
+        let moodboard_count = 0;
+        let artwork_count = 0;
+        let audio_count = 0;
+        let folder_count = 0;
+        let other_count = 0;
 
 
-        filteredData.forEach(data => {
+        sortedFilteredData.forEach(data => {
             switch (data.type) {
                 case "Documentation":
-                    if (documentation_data.length < 3)
+                    if (document_count < 5) {
+                        document_count++
                         setDocuments(documentation_data => [...documentation_data, data]);
+                    }
                     break;
                 case "Worksheet":
-                    if (worksheet_data.length < 4)
+                    if (worksheet_count < 5) {
+                        worksheet_count++
                         setWorksheet(worksheet_data => [...worksheet_data, data]);
+                    }
                     break;
                 case "Moodboard":
-                    if (moodboard_data.length < 4)
+                    if (moodboard_count < 5) {
+                        moodboard_count++
                         setMoodboard(moodboard_data => [...moodboard_data, data]);
+                    }
                     break;
                 case "Artwork":
-                    if (artwork_data.length < 4)
+                    if (artwork_count < 5) {
+                        artwork_count++
                         setArtwork(artwork_data => [...artwork_data, data]);
+                    }
                     break;
                 case "Audio":
-                    if (audio_data.length < 4)
+                    if (audio_count < 5) {
+                        audio_count++
                         setAudio(audio_data => [...audio_data, data]);
+                    }
                     break;
                 case "Folder":
-                    if (folder_data.length < 4)
+                    if (folder_count < 5) {
+                        folder_count++
                         setFolder(folder_data => [...folder_data, data]);
+                    }
                     break;
                 default:
-                    if (other_data.length < 4)
+                    if (other_count < 5) {
+                        other_count++
                         setOthers(other_data => [...other_data, data]);
+
+                    }
                     break;
             }
         });
 
+    }
+
+    const lmfao=()=>{
+        alert("Heyoo");
     }
 
     const onSearching = (e) => {
@@ -200,9 +252,11 @@ export const ResourceLibrary = () => {
     return (
         <div className="resources">
             <h1>Resource</h1>
-            <Link to="/resources/add" >
-                <Button icon={<SearchOutlined />}>Add New Resource</Button>
-            </Link>
+
+
+            {/* // <Link to="/resources/add" >
+            //     <Button icon={<SearchOutlined />}>Add New Resource</Button>
+            // </Link> */}
 
 
             <AutoComplete
@@ -219,7 +273,11 @@ export const ResourceLibrary = () => {
             </AutoComplete>
 
 
-
+            <div className='modal-button-wrapper'>
+                <div className='modal-button-wrapper-inner'>
+                    <AddResource onAddResource={mannualRerenderDetails}/>
+                </div>
+            </div>
 
 
             <Row gutter={[16, 24]} className='justify-center m-t-50'>
@@ -266,6 +324,6 @@ export const ResourceLibrary = () => {
 
                 </Col>
             </Row>
-        </div>
+        </div >
     );
 }

@@ -5,7 +5,7 @@ import { addDoc, collection } from 'firebase/firestore';
 import { db } from "../../config/firebase";
 import { PlusCircleOutlined, CheckOutlined, PlusOutlined} from '@ant-design/icons';
 
-export const MarketplaceAssetLibraryModal = () => {
+export const MarketplaceAssetLibraryModal = ({onAddResource}) => {
 
     const [open, setOpen] = useState(false);
     const [confirmLoading, setConfirmLoading] = useState(false);
@@ -108,6 +108,8 @@ export const MarketplaceAssetLibraryModal = () => {
                 "group": "Market"
 
             })
+            onAddResource();
+            setOpen(false);
         } catch (err) {
             console.error(err)
         }
@@ -158,9 +160,9 @@ export const MarketplaceAssetLibraryModal = () => {
                         </Button>
 
                         <div className='confirm-btns'>
-                            <Button htmlType="button" onClick={handleOk} className='m-r-10'>
+                            {/* <Button htmlType="button" onClick={handleOk} className='m-r-10'>
                                 Add Another <PlusCircleOutlined />
-                            </Button>
+                            </Button> */}
                             <Form.Item>
                                 <Button type="primary" htmlType="submit" onClick={() => {
                                     form
@@ -242,6 +244,8 @@ export const MarketplaceAssetLibraryModal = () => {
                                         <Option value="3D Model">3D Model</Option>
                                         <Option value="2D Model">2D Model</Option>
                                         <Option value="Texture Pack">Texture Pack</Option>
+                                        <Option value="Plugin">Plugin</Option>
+                                        <Option value="BPComponent">BPComponent</Option>
                                         <Option value="Shaders">Shaders</Option>
                                         <Option value="VFX">VFX</Option>
                                         <Option value="Audio">Audio</Option>

@@ -5,7 +5,7 @@ import { addDoc, collection } from 'firebase/firestore';
 import { db } from "../../config/firebase";
 import { PlusCircleOutlined, CheckOutlined, UserOutlined, MehOutlined, PlusOutlined } from '@ant-design/icons';
 
-export const AssetLibraryModal = () => {
+export const AssetLibraryModal = ({onAddResource}) => {
 
     const [pipelineAssignees, setPipelineAssignees] = useState({
         "Writing": 'nan',
@@ -104,6 +104,9 @@ export const AssetLibraryModal = () => {
                 'currentProgress': currentProgress,
                 "group": "inHouse"
             })
+            onAddResource();
+            setOpen(false);
+
         } catch (err) {
             console.error(err)
         }
@@ -221,9 +224,9 @@ export const AssetLibraryModal = () => {
                         </Button>
 
                         <div className='confirm-btns'>
-                            <Button htmlType="button" onClick={handleOk} className='m-r-10'>
+                            {/* <Button htmlType="button" onClick={alert('Coming Soon')} className='m-r-10'>
                                 Add Another <PlusCircleOutlined />
-                            </Button>
+                            </Button> */}
                             <Form.Item>
                                 <Button type="primary" htmlType="submit" onClick={() => {
                                     form

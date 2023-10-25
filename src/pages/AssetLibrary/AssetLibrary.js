@@ -59,8 +59,47 @@ export const AssetLibrary = () => {
         getRefList();
     }, []);
 
+    const mannualRerenderDetails = () => {
+        const getRefList = async () => {
+            try {
+                const inhouseData = await getDocs(inhouseAssetList);
+                let filteredRefData = [];
+                filteredRefData.push(
+                    inhouseData.docs.map((doc) => ({
+                        ...doc.data(),
+                        id: doc.id,
+                        key: doc.id
+                    }))
+                )
+                const marketData = await getDocs(marketplaceAssetList);
+                filteredRefData.push(
+                    marketData.docs.map((doc) => ({
+                        ...doc.data(),
+                        id: doc.id,
+                        key: doc.id
+                    }))
+                )
+                const animationData = await getDocs(animationAssetList);
+                filteredRefData.push(
+                    animationData.docs.map((doc) => ({
+                        ...doc.data(),
+                        id: doc.id,
+                        key: doc.id
+                    }))
+                )
+                filterAllData(filteredRefData);
+                // console.log(filteredRefData);
+            }
+            catch (err) {
+                console.error(err)
+            }
+        }
+
+        getRefList();
+    }
+
     if (!user) {
-        return <Navigate to="/"  replace={true}/>
+        return <Navigate to="/" replace={true} />
     }
 
     const filterAllData = (allRefData) => {
@@ -100,9 +139,9 @@ export const AssetLibrary = () => {
 
             <div className='modal-button-wrapper'>
                 <div className='modal-button-wrapper-inner'>
-                    <AssetLibraryModal />
-                    <MarketplaceAssetLibraryModal />
-                    <AnimationAssetLibraryModal />
+                    <AssetLibraryModal onAddResource={mannualRerenderDetails} />
+                    <MarketplaceAssetLibraryModal onAddResource={mannualRerenderDetails} />
+                    <AnimationAssetLibraryModal onAddResource={mannualRerenderDetails} />
                 </div>
             </div>
 
