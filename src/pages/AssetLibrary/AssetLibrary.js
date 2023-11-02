@@ -3,7 +3,7 @@ import { AssetLibraryModal } from "./AssetLibraryModal"
 import { MarketplaceAssetLibraryModal } from "./MarketplaceAssetLibraryModal"
 import { AnimationAssetLibraryModal } from "./AnimationAssetLibraryModal"
 import { Typography, Tag, Button, Input } from 'antd';
-import { LinkOutlined, CheckCircleOutlined, DollarOutlined } from '@ant-design/icons';
+import { LinkOutlined, CheckCircleOutlined, DollarOutlined, HddOutlined } from '@ant-design/icons';
 import { db, auth } from "../../config/firebase";
 import { getDocs, collection } from 'firebase/firestore'
 import { Navigate } from 'react-router-dom';
@@ -135,7 +135,9 @@ export const AssetLibrary = () => {
 
 
         <div className='container'>
-            <Search placeholder="Input search text" enterButton="Search" size="large" style={{ width: 800 }} onChange={e => onSearching(e.target.value)} />
+            <Title level={1} className='text-left'>Asset List </Title>
+
+            <Search placeholder="Enter resource name or search by Tag" enterButton="Search" size="large" style={{ width: 800 }} onChange={e => onSearching(e.target.value)} />
 
             <div className='modal-button-wrapper'>
                 <div className='modal-button-wrapper-inner'>
@@ -147,7 +149,6 @@ export const AssetLibrary = () => {
 
 
             <div className='asset-list-container'>
-                <Title level={1} className='text-left'>Asset List </Title>
                 {assetSearchData.map((asset) => (
                     <>
                         {asset.group == "Market" ? (

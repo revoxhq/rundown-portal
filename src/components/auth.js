@@ -3,6 +3,8 @@ import { auth, googleProvider } from "../config/firebase";
 import { createUserWithEmailAndPassword, signInWithPopup, signOut } from "firebase/auth";
 import { Button, Checkbox, Form, Input, Tooltip, Space } from 'antd';
 import { GoogleOutlined } from '@ant-design/icons';
+import { Navigate } from 'react-router-dom';
+
 const onFinish = (values) => {
     console.log('Success:', values);
 };
@@ -14,6 +16,8 @@ export const Auth = () => {
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const user = auth.currentUser;
+
     const signIn = async () => {
         try {
             await createUserWithEmailAndPassword(auth, email, password);
@@ -40,8 +44,12 @@ export const Auth = () => {
         }
     };
 
+    if (user) {
+        return <Navigate to="/home" replace={true} />
+    }
+
     //returns the current logged in users email
-    console.log(auth?.currentUser?.email);
+    // console.log(auth?.currentUser?.email);
 
     return (
         <div>

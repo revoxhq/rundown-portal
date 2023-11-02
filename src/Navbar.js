@@ -25,13 +25,13 @@ const items = [
         key: 'resources',
         icon: <AppstoreOutlined />,
     },
-    {
-        label: (
-            <CustomLink to={'/documents'}>Documents</CustomLink>
-        ),
-        key: 'documents',
-        icon: <SettingOutlined />,
-    },
+    // {
+    //     label: (
+    //         <CustomLink to={'/documents'}>Documents</CustomLink>
+    //     ),
+    //     key: 'documents',
+    //     icon: <SettingOutlined />,
+    // },
 ];
 
 export const NavBar = () => {

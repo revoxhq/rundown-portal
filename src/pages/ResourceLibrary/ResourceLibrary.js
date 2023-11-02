@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import { db } from "../../config/firebase";
 import { getDocs, collection } from 'firebase/firestore'
 import { Button, Input, Col, Row, AutoComplete } from 'antd';
 import { SearchOutlined, ReadOutlined, PartitionOutlined, AudioOutlined, HighlightOutlined, FolderOpenOutlined, BarChartOutlined, CoffeeOutlined, UserOutlined } from '@ant-design/icons';
@@ -7,6 +6,8 @@ import { Link } from 'react-router-dom';
 import { ResourceCard } from './ResourceCard';
 import { AddResource } from './AddResource';
 import { sort } from 'fast-sort';
+import { Navigate } from 'react-router-dom';
+import { db, auth } from "../../config/firebase";
 
 const { Search } = Input;
 
@@ -24,6 +25,7 @@ export const ResourceLibrary = () => {
     const [allResourceData, setResourceData] = useState([]);
 
     const [searchOptions, setSearchOptions] = useState([]);
+    const user = auth.currentUser;
 
     // const [resourceList, setResourceList] = useState([]);
     const resourceListRef = collection(db, "reference-resources");
@@ -249,6 +251,10 @@ export const ResourceLibrary = () => {
 
     }
 
+    if (!user) {
+        return <Navigate to="/" replace={true} />
+    }
+
     return (
         <div className="resources">
             <h1>Resource</h1>
@@ -268,7 +274,7 @@ export const ResourceLibrary = () => {
                 options={searchOptions}
             >
                 {/* <Input.Search size="large" placeholder="input here" /> */}
-                <Search placeholder="Input search text" enterButton="Search" size="large" style={{ width: 800 }} onChange={e => onSearching(e.target.value)} />
+                <Search placeholder="Enter resource name or search by category" enterButton="Search" size="large" style={{ width: 800 }} onChange={e => onSearching(e.target.value)} />
 
             </AutoComplete>
 

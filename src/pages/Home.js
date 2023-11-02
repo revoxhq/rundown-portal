@@ -1,37 +1,47 @@
 import { Card, Typography } from 'antd';
+import { db, auth } from "../config/firebase";
+import { Navigate } from 'react-router-dom';
+
 const { Meta } = Card;
 const { Title } = Typography;
 
 export const Home = () => {
+
+    const user = auth.currentUser;
+
+    if (!user) {
+        return <Navigate to="/" replace={true} />
+    }
+
     return (
         <>
 
             <div className='quicklink-cards-wrapper'>
-                {/* <Title>Welcome to the Rundown Studios Portal</Title> */}
-                <img alt="app" src='images/appLogos/rdportal.png' />
+                <Title>Welcome <span style={{ color: '#ff5a26'}}>{user.displayName}</span></Title>
+                {/* <img alt="app" src='images/appLogos/rdportal.png' /> */}
                 <div className='quicklink-cards-wrapper inner'>
                     {/* Clickup */}
-                    <a href='https://app.clickup.com/5718642/v/l/s/55419830' target='_blank'>
+                    <a href='https://app.clickup.com/5718642/v/l/s/55419830' target='_blank' class="quicklinks-card">
                         <Card hoverable className='home-card' style={{ width: 240, height: 240, }}
-                            cover={<img alt="app" src='images/appLogos/clickup.png' />}
+                            cover={<img alt="app" className='quicklink-img' src='images/appLogos/clickup.png' />}
                         >
                             <Meta title="Clickup" description="www.app.clickup.com" />
                         </Card>
                     </a>
 
                     {/* Clockify */}
-                    <a href='https://app.clockify.me/dashboard' target='_blank'>
+                    <a href='https://app.clockify.me/dashboard' target='_blank' class="quicklinks-card">
                         <Card hoverable className='home-card' style={{ width: 240, height: 240, }}
-                            cover={<img alt="app" src='images/appLogos/clockify.png' />}
+                            cover={<img alt="app" className='quicklink-img' src='images/appLogos/clockify.png' />}
                         >
                             <Meta title="Clockify" description="www.app.clockify.me" />
                         </Card>
-                    </a>
+                </a>
 
                     {/* Discord */}
-                    <a href='https://discord.com/channels/@me' target='_blank'>
+                    <a href='https://discord.com/channels/@me' target='_blank' class="quicklinks-card">
                         <Card hoverable className='home-card' style={{ width: 240, height: 240, }}
-                            cover={<img alt="app" src='images/appLogos/discord.png' />}
+                            cover={<img alt="app" className='quicklink-img' src='images/appLogos/discord.png' />}
                         >
                             <Meta title="Discord" description="www.discord.com" />
                         </Card>
@@ -39,9 +49,9 @@ export const Home = () => {
 
 
                     {/* Gather */}
-                    <a href='https://app.gather.town/app/1xUDS07zQ1iNBBIS/revoxhq' target='_blank'>
+                    <a href='https://app.gather.town/app/1xUDS07zQ1iNBBIS/revoxhq' target='_blank' class="quicklinks-card">
                         <Card hoverable className='home-card' style={{ width: 240, height: 240, }}
-                            cover={<img alt="app" src='images/appLogos/gather.png' />}
+                            cover={<img alt="app" className='quicklink-img' src='images/appLogos/gather.png' />}
                         >
                             <Meta title="Gather" description="www.gather.town" />
                         </Card>
@@ -49,9 +59,9 @@ export const Home = () => {
 
 
                     {/* Gmail */}
-                    <a href='https://mail.google.com/mail/' target='_blank'>
+                    <a href='https://mail.google.com/mail/' target='_blank' class="quicklinks-card">
                         <Card hoverable className='home-card' style={{ width: 240, height: 240, }}
-                            cover={<img alt="app" src='images/appLogos/gmail.png' />}
+                            cover={<img alt="app" className='quicklink-img' src='images/appLogos/gmail.png' />}
                         >
                             <Meta title="Mail" description="www.mail.google.com" />
                         </Card>
@@ -59,9 +69,9 @@ export const Home = () => {
 
 
                     {/* Slack */}
-                    <a href='https://app.slack.com/client' target='_blank'>
+                    <a href='https://app.slack.com/client' target='_blank' class="quicklinks-card">
                         <Card hoverable className='home-card' style={{ width: 240, height: 240, }}
-                            cover={<img alt="app" src='images/appLogos/slack.png' />}
+                            cover={<img alt="app" className='quicklink-img' src='images/appLogos/slack.png' />}
                         >
                             <Meta title="Slack" description="www.app.slack.com" />
                         </Card>
@@ -69,9 +79,9 @@ export const Home = () => {
 
 
                     {/* Telegram */}
-                    <a href='https://web.telegram.org/z/' target='_blank'>
+                    <a href='https://web.telegram.org/z/' target='_blank' class="quicklinks-card">
                         <Card hoverable className='home-card' style={{ width: 240, height: 240, }}
-                            cover={<img alt="app" src='images/appLogos/telegram.png' />}
+                            cover={<img alt="app" className='quicklink-img' src='images/appLogos/telegram.png' />}
                         >
                             <Meta title="Telegram" description="www.web.telegram.org" />
                         </Card>
@@ -79,9 +89,9 @@ export const Home = () => {
 
 
                     {/* Youtube */}
-                    <a href='https://www.youtube.com/' target='_blank'>
+                    <a href='https://www.youtube.com/' target='_blank' class="quicklinks-card">
                         <Card hoverable className='home-card' style={{ width: 240, height: 240, }}
-                            cover={<img alt="app" src='images/appLogos/youtube.png' />}
+                            cover={<img alt="app" className='quicklink-img' src='images/appLogos/youtube.png' />}
                         >
                             <Meta title="Youtube" description="www.youtube.com" />
                         </Card>
