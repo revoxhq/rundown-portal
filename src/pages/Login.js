@@ -4,7 +4,7 @@ import '../styles/helper.css'
 import '../styles/assetBrowser.css'
 export const Login = () => {
     return (
-        <div>
+        <div className='auth-wrapper'>
             <Auth></Auth>
         </div>
 

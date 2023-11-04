@@ -1,7 +1,11 @@
 import React, { useState } from 'react';
 import { AppstoreOutlined, MailOutlined, SettingOutlined } from '@ant-design/icons';
-import { Menu } from 'antd';
+import { createUserWithEmailAndPassword, signInWithPopup, signOut } from "firebase/auth";
+
+import { Menu, Button } from 'antd';
 import { Link } from 'react-router-dom';
+import { auth } from "./config/firebase";
+import { Navigate } from 'react-router-dom';
 
 const items = [
     {
@@ -27,12 +31,23 @@ const items = [
     },
     // {
     //     label: (
-    //         <CustomLink to={'/documents'}>Documents</CustomLink>
+    //         <Button type="link">Sign out</Button>
     //     ),
     //     key: 'documents',
     //     icon: <SettingOutlined />,
     // },
 ];
+
+const logOut = async () => {
+    try {
+        await signOut(auth).then((result) => {
+            <Navigate to="/" replace={true} />
+        });
+    }
+    catch (err) {
+        console.error(err);
+    }
+};
 
 export const NavBar = () => {
     const [current, setCurrent] = useState('mail');
@@ -42,7 +57,11 @@ export const NavBar = () => {
     };
 
     return (
-        <Menu onClick={onClick} selectedKeys={[current]} mode="horizontal" items={items} />
+        <div className='nav-bar-wrapper'>
+            <Menu onClick={onClick} selectedKeys={[current]} mode="horizontal" items={items} />
+            <Button type="link" onClick={logOut}>Sign out</Button>
+        </div>
+
     );
 }
 function CustomLink({ to, children, ...props }) {

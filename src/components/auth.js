@@ -1,131 +1,70 @@
 import React, { useState } from 'react';
 import { auth, googleProvider } from "../config/firebase";
 import { createUserWithEmailAndPassword, signInWithPopup, signOut } from "firebase/auth";
-import { Button, Checkbox, Form, Input, Tooltip, Space } from 'antd';
+import { Button, Form, Input, Tooltip, Space } from 'antd';
 import { GoogleOutlined } from '@ant-design/icons';
 import { Navigate } from 'react-router-dom';
 
-const onFinish = (values) => {
-    console.log('Success:', values);
-};
-const onFinishFailed = (errorInfo) => {
-    console.log('Failed:', errorInfo);
-};
+
 
 export const Auth = () => {
 
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const user = auth.currentUser;
+    // const user = auth.currentUser;
+    const [logingError, setError] = useState(false);
+    const [user, setUser] = useState(auth.currentUser);
 
-    const signIn = async () => {
-        try {
-            await createUserWithEmailAndPassword(auth, email, password);
-        }
-        catch (err) {
-            console.error(err);
-        }
-    };
     const signInwithGoogle = async () => {
         try {
-            await signInWithPopup(auth, googleProvider);
+            await signInWithPopup(auth, googleProvider).then((result) => {
+                setUser(result.user);
+            });
         }
         catch (err) {
-            console.error(err);
+            console.error(err.message);
+            setError(true)
         }
     };
 
-    const logOut = async () => {
-        try {
-            await signOut(auth);
-        }
-        catch (err) {
-            console.error(err);
-        }
-    };
 
-    if (user) {
+    if (user || auth.currentUser) {
+        console.log(auth.currentUser);
         return <Navigate to="/home" replace={true} />
     }
 
-    //returns the current logged in users email
-    // console.log(auth?.currentUser?.email);
-
     return (
-        <div>
-            <Space wrap direction="vertical">
-                <Form
-                    name="basic"
-                    labelCol={{
-                        span: 8,
-                    }}
-                    wrapperCol={{
-                        span: 16,
-                    }}
-                    style={{
-                        maxWidth: 600,
-                    }}
-                    initialValues={{
-                        remember: true,
-                    }}
-                    onFinish={onFinish}
-                    onFinishFailed={onFinishFailed}
-                    autoComplete="off"
-                >
-                    <Form.Item
-                        label="Username"
-                        name="username"
-                        rules={[
-                            {
-                                required: true,
-                                message: 'Please input your username!',
-                            },
-                        ]}
-                    >
-                        <Input onChange={(e) => setEmail(e.target.value)} />
-                    </Form.Item>
+        <div className='login-page'>
+            <div className='carosel-video-wrappers'>
+                <div className='video-filter'></div>
+                <video src='/videos/website.mp4' className='carosel-video d-block w-100' webkit-playsinline={"true"} autoPlay muted playsInline loop>
+                </video>
+            </div>
 
-                    <Form.Item
-                        label="Password"
-                        name="password"
-                        rules={[
-                            {
-                                required: true,
-                                message: 'Please input your password!',
-                            },
-                        ]}
-                    >
-                        <Input.Password onChange={(e) => setPassword(e.target.value)} />
-                    </Form.Item>
 
-                    <Form.Item
-                        name="remember"
-                        valuePropName="checked"
-                        wrapperCol={{
-                            offset: 8,
-                            span: 16,
-                        }}
-                    >
-                        <Checkbox>Remember me</Checkbox>
-                    </Form.Item>
+            <div className='login-wrapper'>
+                <Space wrap direction="vertical">
 
-                    <Form.Item
-                        wrapperCol={{
-                            offset: 8,
-                            span: 16,
-                        }}
-                    >
-                        <Button onClick={signIn} type="primary" htmlType="submit">
-                            Submit
-                        </Button>
-                    </Form.Item>
+                    <div className='login-inner-video-wrapper'>
+                        <video src='/videos/our-begin.mp4' className='login-video d-block w-100' webkit-playsinline={"true"} autoPlay muted playsInline loop>
+                        </video>
+                    </div>
 
-                </Form>
-                <Button onClick={signInwithGoogle} icon={<GoogleOutlined />}>Login with Google</Button>
-                <Button type="link" block onClick={logOut}>
-                    Log Out
-                </Button>
-            </Space>
+                    <div className='login-inner-bottom-wrapper'>
+                        <h2>Welcome to the Rundown Studios Portal</h2>
+                        <label className='m-b-15'>Sign in with your studio email to continue</label>
+                    </div>
+
+                    {logingError &&
+                        <div className='login-error'>
+                            <label>Login Error</label>
+                            <label>Note: Only studio accounts and company accounts are allowed to login</label>
+                        </div>
+                    }
+
+                    <Button size={'large'} onClick={signInwithGoogle} icon={<GoogleOutlined />}>Login with Google</Button>
+
+                </Space>
+            </div>
+
 
         </div >
 
