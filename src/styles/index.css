@@ -1,24 +1,26 @@
 @import url('https://fonts.googleapis.com/css2?family=Blinker:wght@300;400&display=swap');
 
-::-webkit-scrollbar {
-    width: 5px;
-    position: absolute;
-}
+/* ===== Scrollbar CSS ===== */
+  /* Firefox */
+  * {
+    scrollbar-width: auto;
+    scrollbar-color: #8d8b8d #ffffff;
+  }
 
-/* Track */
-::-webkit-scrollbar-track {
-    background: rgb(65, 65, 65);
-}
+  /* Chrome, Edge, and Safari */
+  *::-webkit-scrollbar {
+    width: 8px;
+  }
 
-/* Handle */
-::-webkit-scrollbar-thumb {
-    background: #888;
-}
+  *::-webkit-scrollbar-track {
+    background: #ffffff;
+  }
 
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-    background: #555;
-}
+  *::-webkit-scrollbar-thumb {
+    background-color: #8d8b8d;
+    border-radius: 10px;
+    border: 3px solid #ffffff;
+  }
 
 h1 {
     font-family: 'Blinker', sans-serif !important;
@@ -148,6 +150,7 @@ h2 {
     width: 100%;
     justify-content: space-between;
     min-height: 720px;
+    /* background-color: #eeeeee; */
 }
 
 .modal-inner .modal-left {
@@ -155,6 +158,7 @@ h2 {
     flex-grow: 4;
     padding: 20px;
     flex-direction: column;
+    /* background-color: #fff; */
 }
 
 .modal-inner .modal-left .in-house-toggle {
@@ -206,6 +210,7 @@ h2 {
 
 .create-asset-modal .ant-modal-footer {
     padding: 0px 20px;
+    margin-top: 0px;
     /* padding-top: 0px; */
 }
 
@@ -290,4 +295,12 @@ h2 {
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
+    min-width: 600px;
+}
+
+.create-asset-modal .ant-modal-footer{
+    background-color: #eeeeee;
+    padding-top: 20px;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
 }

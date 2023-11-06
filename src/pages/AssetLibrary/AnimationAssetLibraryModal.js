@@ -5,7 +5,7 @@ import { addDoc, collection } from 'firebase/firestore';
 import { db } from "../../config/firebase";
 import { PlusCircleOutlined, CheckOutlined, UserOutlined, MehOutlined, PlusOutlined } from '@ant-design/icons';
 
-export const AnimationAssetLibraryModal = ({onAddResource}) => {
+export const AnimationAssetLibraryModal = ({ onAddResource }) => {
 
     const [pipelineAssignees, setPipelineAssignees] = useState({
         "Writing": 'nan',
@@ -53,32 +53,27 @@ export const AnimationAssetLibraryModal = ({onAddResource}) => {
     const tagsData = ["Architecture",
         "Sci-Fi",
         "Realistic",
-        "Cartoon",
+        "Low-Poly",
+        "Modern",
         "Fantasy",
-        "Steampunk",
-        "Cyberpunk",
-        "Minimalist",
-        "Retro",
-        "Gothic",
-        "Medical",
+        "Steam/Cyber punk",
         "Horror",
-        "Adventure",
-        "Sports",
         "Medieval",
-        "Victorian",
-        "Metal",
-        "Wood",
-        "Stone",
-        "Glass",
-        "Plastic",
-        "Organic",
-        "Fabric",
-        "Ceramics",
-        "Underwater",
         "Forest",
-        "Arctic",
-        "Tropical",
-        "Mountainous"];
+        "Underground",
+        "Kitchen",
+        "Interior",
+        "Hospital",
+        "Outdoor",
+        "Farm",
+        "Cave",
+        "Underwater",
+        "Furniture",
+        "Electronic",
+        "Construction",
+        "Food",
+        "Sports",
+        "Medical"];
     //------------------------
     const resourceListRef = collection(db, "animation-assets ");
 
@@ -169,7 +164,7 @@ export const AnimationAssetLibraryModal = ({onAddResource}) => {
         // console.log('Change:', e.target.value);
     };
 
-    
+
     const onProjectChange = (e) => {
         switch (e) {
             case "Internal":
@@ -209,7 +204,7 @@ export const AnimationAssetLibraryModal = ({onAddResource}) => {
     return (
         <div className="asset-library">
             <Button onClick={showModal}>
-            <PlusOutlined /> Animation
+                <PlusOutlined /> Animation
             </Button>
             <Modal
                 title=""

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { AppstoreOutlined, MailOutlined, SettingOutlined } from '@ant-design/icons';
+import { InboxOutlined, HomeOutlined, FireOutlined } from '@ant-design/icons';
 import { createUserWithEmailAndPassword, signInWithPopup, signOut } from "firebase/auth";
 
 import { Menu, Button } from 'antd';
@@ -13,21 +13,21 @@ const items = [
             <CustomLink to={'/home'}>Home</CustomLink>
         ),
         key: 'home',
-        icon: <MailOutlined />,
+        icon: <HomeOutlined />,
     },
     {
         label: (
             <CustomLink to={'/assets'}>Assets</CustomLink>
         ),
         key: 'assets',
-        icon: <AppstoreOutlined />,
+        icon: <FireOutlined />,
     },
     {
         label: (
             <CustomLink to={'/resources'}>Resources</CustomLink>
         ),
         key: 'resources',
-        icon: <AppstoreOutlined />,
+        icon: <InboxOutlined />,
     },
     // {
     //     label: (
@@ -58,7 +58,7 @@ export const NavBar = () => {
 
     return (
         <div className='nav-bar-wrapper'>
-            <Menu onClick={onClick} selectedKeys={[current]} mode="horizontal" items={items} />
+            <Menu onClick={onClick} style={{minWidth: '800px'}} selectedKeys={[current]} mode="horizontal" items={items} />
             <Button type="link" onClick={logOut}>Sign out</Button>
         </div>
 

@@ -3,9 +3,9 @@ import { Link } from 'react-router-dom';
 import { Button, Modal, Form, Input, Slider, Select, Typography, Empty, Radio, Space, Tag, Steps } from 'antd';
 import { addDoc, collection } from 'firebase/firestore';
 import { db } from "../../config/firebase";
-import { PlusCircleOutlined, CheckOutlined, PlusOutlined} from '@ant-design/icons';
+import { PlusCircleOutlined, CheckOutlined, PlusOutlined } from '@ant-design/icons';
 
-export const MarketplaceAssetLibraryModal = ({onAddResource}) => {
+export const MarketplaceAssetLibraryModal = ({ onAddResource }) => {
 
     const [open, setOpen] = useState(false);
     const [confirmLoading, setConfirmLoading] = useState(false);
@@ -39,48 +39,28 @@ export const MarketplaceAssetLibraryModal = ({onAddResource}) => {
     const tagsData = ["Architecture",
         "Sci-Fi",
         "Realistic",
-        "Cartoon",
+        "Low-Poly",
+        "Modern",
         "Fantasy",
-        "Steampunk",
-        "Cyberpunk",
-        "Minimalist",
-        "Retro",
-        "Gothic",
-        "Medical",
+        "Steam/Cyber punk",
         "Horror",
-        "Adventure",
-        "Sports",
         "Medieval",
-        "Victorian",
-        "Metal",
-        "Wood",
-        "Stone",
-        "Glass",
-        "Plastic",
-        "Organic",
-        "Fabric",
-        "Ceramics",
-        "Underwater",
         "Forest",
-        "Arctic",
-        "Tropical",
-        "Mountainous"];
+        "Underground",
+        "Kitchen",
+        "Interior",
+        "Hospital",
+        "Outdoor",
+        "Farm",
+        "Cave",
+        "Underwater",
+        "Furniture",
+        "Electronic",
+        "Construction",
+        "Food",
+        "Sports",
+        "Medical"];
     //------------------------
-
-    const options = [
-        {
-            label: 'Apple',
-            value: 'Apple',
-        },
-        {
-            label: 'Pear',
-            value: 'Pear',
-        },
-        {
-            label: 'Orange',
-            value: 'Orange',
-        },
-    ];
 
 
 
@@ -142,7 +122,7 @@ export const MarketplaceAssetLibraryModal = ({onAddResource}) => {
     return (
         <div className="asset-library">
             <Button onClick={showModal}>
-            <PlusOutlined /> Marketplace
+                <PlusOutlined /> Marketplace
             </Button>
             <Modal
                 title=""
@@ -196,7 +176,7 @@ export const MarketplaceAssetLibraryModal = ({onAddResource}) => {
                             assettype: "Prop",
                             source: "epic",
                             project: "Internal",
-                            assetCategory:"3D Animation"
+                            assetCategory: "3D Animation"
                         }}
                     >
                         <div className='modal-inner'>
@@ -258,7 +238,8 @@ export const MarketplaceAssetLibraryModal = ({onAddResource}) => {
                                     label="Asset Type"
                                 >
                                     <Select placeholder="Select Asset Type" defaultValue={'Prop'}>
-                                        <Option value="prop">Prop</Option>
+                                        <Option value="Prop">Prop</Option>
+                                        <Option value="Structure/House">Structure/House</Option>
                                         <Option value="Electronic">Electronic</Option>
                                         <Option value="Vehicle">Vehicle</Option>
                                         <Option value="Character">Character</Option>
@@ -281,7 +262,7 @@ export const MarketplaceAssetLibraryModal = ({onAddResource}) => {
 
 
                                 {/* //-------------------Tags---------------------- */}
-                                <Text className="m-b-10">Choose Tags</Text>
+                                <Text className="m-b-10">Types of Assets Included</Text>
 
                                 <div className='tags-wrapper'>
                                     <Space size={[0, 8]} wrap>

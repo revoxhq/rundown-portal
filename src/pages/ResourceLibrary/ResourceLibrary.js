@@ -50,7 +50,7 @@ export const ResourceLibrary = () => {
     }, []);
 
 
-    const mannualRerenderDetails=()=>{
+    const mannualRerenderDetails = () => {
         const getRefList = async () => {
             try {
                 const data = await getDocs(resourceListRef);
@@ -135,7 +135,7 @@ export const ResourceLibrary = () => {
     const filterData = (filteredData) => {
 
         let unsortedFilteredData = filteredData;
-        let sortedFilteredData=sort(unsortedFilteredData).desc(u => u["date-updated"])
+        let sortedFilteredData = sort(unsortedFilteredData).desc(u => u["date-updated"])
         setDocuments([]);
         setWorksheet([]);
         setMoodboard([]);
@@ -202,7 +202,7 @@ export const ResourceLibrary = () => {
 
     }
 
-    const lmfao=()=>{
+    const lmfao = () => {
         alert("Heyoo");
     }
 
@@ -213,6 +213,9 @@ export const ResourceLibrary = () => {
                 setSearchData(search_data => [...search_data, data]);
             }
             else if ((data.description).toLowerCase().includes(e.toLowerCase())) {
+                setSearchData(search_data => [...search_data, data]);
+            }
+            else if ((data.project).toLowerCase() == (e.toLowerCase())) {
                 setSearchData(search_data => [...search_data, data]);
             }
         });
@@ -267,7 +270,7 @@ export const ResourceLibrary = () => {
 
             <AutoComplete
                 popupClassName="certain-category-search-dropdown"
-                dropdownMatchSelectWidth={500}
+                popupMatchSelectWidth={500}
                 style={{
                     width: 800,
                 }}
@@ -281,7 +284,7 @@ export const ResourceLibrary = () => {
 
             <div className='modal-button-wrapper'>
                 <div className='modal-button-wrapper-inner'>
-                    <AddResource onAddResource={mannualRerenderDetails}/>
+                    <AddResource onAddResource={mannualRerenderDetails} />
                 </div>
             </div>
 

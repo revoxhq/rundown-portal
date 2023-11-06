@@ -50,32 +50,29 @@ export const AssetLibraryModal = ({onAddResource}) => {
     const tagsData = ["Architecture",
         "Sci-Fi",
         "Realistic",
-        "Cartoon",
+        "Low-Poly",
+        "Modern",
         "Fantasy",
-        "Steampunk",
-        "Cyberpunk",
-        "Minimalist",
-        "Retro",
-        "Gothic",
-        "Medical",
+        "Steam/Cyber punk",
         "Horror",
-        "Adventure",
-        "Sports",
         "Medieval",
-        "Victorian",
-        "Metal",
-        "Wood",
-        "Stone",
-        "Glass",
-        "Plastic",
-        "Organic",
-        "Fabric",
-        "Ceramics",
-        "Underwater",
         "Forest",
-        "Arctic",
-        "Tropical",
-        "Mountainous"];
+        "Underground",
+        "Kitchen",
+        "Interior",
+        "Hospital",
+        "Outdoor",
+        "Farm",
+        "Cave",
+        "Underwater",
+        "Furniture",
+        "Electronic",
+        "Construction",
+        "Food",
+        "Sports",
+        "Medical",
+
+        ];
     //------------------------
     const resourceListRef = collection(db, "inhouse-assets");
 
@@ -306,6 +303,7 @@ export const AssetLibraryModal = ({onAddResource}) => {
                                         <Option value="Electronic">Electronic</Option>
                                         <Option value="Vehicle">Vehicle</Option>
                                         <Option value="Character">Character</Option>
+                                        <Option value="Animal">Animal</Option>
                                         <Option value="Weapon">Weapon</Option>
                                         <Option value="Furniture">Furniture</Option>
                                         <Option value="Foliage">Foliage</Option>

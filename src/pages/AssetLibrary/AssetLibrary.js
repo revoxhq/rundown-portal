@@ -29,7 +29,7 @@ export const AssetLibrary = () => {
                     inhouseData.docs.map((doc) => ({
                         ...doc.data(),
                         id: doc.id,
-                        key: doc.id
+                        // key: doc.id
                     }))
                 )
                 const marketData = await getDocs(marketplaceAssetList);
@@ -37,7 +37,7 @@ export const AssetLibrary = () => {
                     marketData.docs.map((doc) => ({
                         ...doc.data(),
                         id: doc.id,
-                        key: doc.id
+                        // key: doc.id
                     }))
                 )
                 const animationData = await getDocs(animationAssetList);
@@ -45,11 +45,11 @@ export const AssetLibrary = () => {
                     animationData.docs.map((doc) => ({
                         ...doc.data(),
                         id: doc.id,
-                        key: doc.id
+                        // key: doc.id
                     }))
                 )
                 filterAllData(filteredRefData);
-                // console.log(filteredRefData);
+                console.log(filteredRefData);
             }
             catch (err) {
                 console.error(err)
@@ -152,7 +152,7 @@ export const AssetLibrary = () => {
                 {assetSearchData.map((asset) => (
                     <>
                         {asset.group == "Market" ? (
-                            <div className='asset-list-item'>
+                            <div key={asset.id} className='asset-list-item'>
                                 <div className='asset-icon-wrapper'>
                                     {/* <MessageOutlined style={{ fontSize: '75px' }} /> */}
                                 </div>
@@ -173,20 +173,20 @@ export const AssetLibrary = () => {
                                     <Title level={5}>{asset.project}</Title>
                                     <Text type="secondary">{asset.client}</Text>
                                 </div>
-                                <div className='asset-tags-wrapper'>
+                                {/* <div className='asset-tags-wrapper'>
                                     {asset.tags.map((tag) => (
-                                        <Tag bordered={false} color="processing">
+                                        <Tag key={tag} bordered={false} color="processing">
                                             {tag}
                                         </Tag>
                                     ))}
-                                </div>
+                                </div> */}
                                 <div className='asset-actions-wrapper'>
                                     <Button>View</Button>
                                     <Button type="link">Edit</Button>
                                 </div>
                             </div>
                         ) : asset.group == "Animation" ? (
-                            <div className='asset-list-item'>
+                            <div key={asset.id} className='asset-list-item'>
                                 <div className='asset-icon-wrapper'>
                                     {/* <ClockCircleOutlined style={{ fontSize: '75px' }} /> */}
                                 </div>
@@ -211,20 +211,20 @@ export const AssetLibrary = () => {
                                     <Title level={5}>{asset.project}</Title>
                                     <Text type="secondary">{asset.client}</Text>
                                 </div>
-                                <div className='asset-tags-wrapper'>
+                                {/* <div className='asset-tags-wrapper'>
                                     {asset.tags.map((tag) => (
-                                        <Tag bordered={false} color="processing">
+                                        <Tag key={tag} bordered={false} color="processing">
                                             {tag}
                                         </Tag>
                                     ))}
-                                </div>
+                                </div> */}
                                 <div className='asset-actions-wrapper'>
                                     <Button>View</Button>
                                     <Button type="link">Edit</Button>
                                 </div>
                             </div>
                         ) : (
-                            <div className='asset-list-item'>
+                            <div key={asset.id} className='asset-list-item'>
                                 <div className='asset-icon-wrapper'>
                                     {/* <ClockCircleOutlined style={{ fontSize: '75px' }} /> */}
                                 </div>
@@ -248,13 +248,13 @@ export const AssetLibrary = () => {
                                     <Title level={5}>{asset.project}</Title>
                                     <Text type="secondary">{asset.client}</Text>
                                 </div>
-                                <div className='asset-tags-wrapper'>
+                                {/* <div className='asset-tags-wrapper'>
                                     {asset.tags.map((tag) => (
-                                        <Tag bordered={false} color="processing">
+                                        <Tag key={tag} bordered={false} color="processing">
                                             {tag}
                                         </Tag>
                                     ))}
-                                </div>
+                                </div> */}
                                 <div className='asset-actions-wrapper'>
                                     <Button>View</Button>
                                     <Button type="link">Edit</Button>
