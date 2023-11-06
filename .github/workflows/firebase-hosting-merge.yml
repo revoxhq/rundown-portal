@@ -10,8 +10,30 @@ jobs:
   build_and_deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - run: npm ci && npm run build
+      - name: 🔖Checkout repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - name: 📦Setup PNPM
+        uses: pnpm/action-setup@v2
+        with:
+          version: 8
+      - name: 🌳Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20
+          cache: pnpm
+
+      - name: 🛠️Install dependencies from lockfile
+        run: pnpm install --frozen-lockfile
+
+      - name: 🧾Print versions
+        run: |
+          git --version
+          node --version
+          pnpm --version
+          pnpm commitlint --version
+      - run: pnpm ci && pnpm run build
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
