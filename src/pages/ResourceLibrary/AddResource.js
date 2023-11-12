@@ -90,18 +90,19 @@ export const AddResource = ({ onAddResource }) => {
                     {/* <Title level={1} style={{ marginBottom: "30px" }}>Add Resource</Title> */}
                     {/* <div className="form-container"> */}
                     <Form
-                        labelCol={{
-                            offset: 6,
-                            span: 12,
-                        }}
-                        wrapperCol={{
-                            offset: 6,
-                            span: 12,
-                        }}
+                        // labelCol={{
+                        //     offset: 6,
+                        //     span: 12,
+                        // }}
+                        // wrapperCol={{
+                        //     offset: 6,
+                        //     span: 12,
+                        // }}
                         style={{
-                            minWidth: 800,
-                            maxWidth: 800,
+                            // minWidth: 800,
+                            // maxWidth: 800,
                             // justifyContent: 'center'
+                            width: '100%'
                         }}
                         initialValues={{
                             accesslevel: 3,
