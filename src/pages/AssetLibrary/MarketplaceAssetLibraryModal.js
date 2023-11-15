@@ -86,7 +86,7 @@ export const MarketplaceAssetLibraryModal = ({ onAddResource }) => {
                 'category': values.assetCategory,
                 'dateUpdated': Date.now(),
                 'tags': selectedTags,
-                'specialNotes': values.specialnotes,
+                'specialNotes': values.specialnotes!=''? values.specialnotes:'',
                 "group": "Market"
 
             })
