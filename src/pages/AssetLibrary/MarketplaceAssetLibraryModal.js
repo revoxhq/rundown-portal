@@ -37,6 +37,8 @@ export const MarketplaceAssetLibraryModal = ({ onAddResource }) => {
     const { CheckableTag } = Tag;
 
     const tagsData = ["Architecture",
+        "System",
+        "Sci-Fi",
         "Sci-Fi",
         "Realistic",
         "Low-Poly",
@@ -229,6 +231,7 @@ export const MarketplaceAssetLibraryModal = ({ onAddResource }) => {
                                         <Option value="Shaders">Shaders</Option>
                                         <Option value="VFX">VFX</Option>
                                         <Option value="Audio">Audio</Option>
+                                        <Option value="System">System</Option>
                                     </Select>
                                 </Form.Item>
 
