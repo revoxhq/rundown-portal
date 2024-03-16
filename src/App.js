@@ -23,8 +23,8 @@ function App() {
       <Row type="flex" justify="center">
         <Col span={24}>
           <Routes>
-            <Route path='/' element={<Login />} />
-            <Route path='/home' element={<Home />} />
+            <Route path='/' element={<Home />} />
+            <Route path='/login' element={<Login />} />
             <Route path='/assets' element={<AssetLibrary />} />
             <Route path='/documents' element={<DocumentLibrary />} />
             <Route path='/resources' element={<ResourceLibrary />} />

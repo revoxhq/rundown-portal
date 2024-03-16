@@ -20,6 +20,17 @@ export const AssetLibrary = () => {
     const [assetSearchData, setSearchData] = useState([]);
     const user = auth.currentUser;
 
+
+    const filterAllData = (allRefData) => {
+        allRefData.forEach(list => {
+            list.forEach(asset => {
+                setAssetData(allAssetData => [...allAssetData, asset]);
+                setSearchData(assetSearchData => [...assetSearchData, asset]);
+            });
+        });
+    }
+
+
     useEffect(() => {
         const getRefList = async () => {
             try {
@@ -99,17 +110,10 @@ export const AssetLibrary = () => {
     }
 
     if (!user) {
-        return <Navigate to="/" replace={true} />
+        return <Navigate to="/login" replace={true} />
     }
 
-    const filterAllData = (allRefData) => {
-        allRefData.forEach(list => {
-            list.forEach(asset => {
-                setAssetData(allAssetData => [...allAssetData, asset]);
-                setSearchData(assetSearchData => [...assetSearchData, asset]);
-            });
-        });
-    }
+
 
     const onSearching = (e) => {
         setSearchData([]);

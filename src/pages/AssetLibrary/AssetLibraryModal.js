@@ -5,7 +5,7 @@ import { addDoc, collection } from 'firebase/firestore';
 import { db } from "../../config/firebase";
 import { PlusCircleOutlined, CheckOutlined, UserOutlined, MehOutlined, PlusOutlined } from '@ant-design/icons';
 
-export const AssetLibraryModal = ({onAddResource}) => {
+export const AssetLibraryModal = ({ onAddResource }) => {
 
     const [pipelineAssignees, setPipelineAssignees] = useState({
         "Writing": 'nan',
@@ -72,12 +72,16 @@ export const AssetLibraryModal = ({onAddResource}) => {
         "Sports",
         "Medical",
 
-        ];
+    ];
     //------------------------
     const resourceListRef = collection(db, "inhouse-assets");
 
     const onFinish = (values) => {
-        console.log('Success:', values);
+        console.log('Submitting:', values);
+        console.log('currentProgress:', currentProgress);
+        console.log('pipelineAssignees:', JSON.stringify(pipelineAssignees));
+        console.log('tags:', selectedTags);
+        console.log('client:', currentClient);
         onSubmitForm(values);
     };
     const onFinishFailed = (errorInfo) => {
@@ -87,13 +91,11 @@ export const AssetLibraryModal = ({onAddResource}) => {
         try {
             await addDoc(resourceListRef, {
                 'assetName': values.assetName,
-                'description': values.description,
                 'project': values.project,
                 'assettype': values.assettype,
                 'assetLink': values.assetUrl,
                 'conceptArtUrl': values.cocneptUrl,
                 'priority': values.priority,
-                'dateUpdated': Date.now(),
                 'pipeline': JSON.stringify(pipelineAssignees),
                 'tags': selectedTags,
                 'client': currentClient,
@@ -161,9 +163,6 @@ export const AssetLibraryModal = ({onAddResource}) => {
 
     //--------------
 
-    const onDescriptionorSpecialNotesAdd = (e) => {
-        // console.log('Change:', e.target.value);
-    };
 
     const onProjectChange = (e) => {
         switch (e) {
@@ -256,6 +255,8 @@ export const AssetLibraryModal = ({onAddResource}) => {
                             priority: 3,
                             assettype: "Prop",
                             project: "Internal",
+                            specialnotes:"-"
+
                         }}
                     >
                         <div className='modal-inner'>
@@ -274,10 +275,6 @@ export const AssetLibraryModal = ({onAddResource}) => {
                                     <Input />
                                 </Form.Item>
 
-                                {/* Asset Description */}
-                                <Form.Item name={'description'} label="Description">
-                                    <TextArea showCount maxLength={100} onChange={onDescriptionorSpecialNotesAdd} />
-                                </Form.Item>
 
                                 {/* ====================In House Items ======================== */}
                                 <Form.Item
@@ -539,9 +536,12 @@ export const AssetLibraryModal = ({onAddResource}) => {
 
                                 />
 
-                                {/* Asset Description */}
-                                <Form.Item name={'specialnotes'} label="Special Notes">
-                                    <TextArea showCount maxLength={100} onChange={onDescriptionorSpecialNotesAdd} />
+                                {/* Asset Name */}
+
+
+
+                                <Form.Item name="specialnotes" label="Special Notes" >
+                                    <TextArea  maxLength={100}/>
                                 </Form.Item>
 
                             </div>

@@ -1,23 +1,29 @@
 import { Card, Typography } from 'antd';
 import { db, auth } from "../config/firebase";
 import { Navigate } from 'react-router-dom';
+import { useEffect,useState } from 'react';
 
 const { Meta } = Card;
 const { Title } = Typography;
 
 export const Home = () => {
 
-    const user = auth.currentUser;
+    const [user, setUser] = useState(auth.currentUser);
 
+    useEffect(() => {
+        setUser(auth.currentUser);
+    }, []);
+
+    // const user = auth.currentUser;
     if (!user) {
-        return <Navigate to="/" replace={true} />
+        return <Navigate to="/login" replace={true} />
     }
 
     return (
         <>
 
             <div className='quicklink-cards-wrapper'>
-                <Title>Welcome <span style={{ color: '#ff5a26'}}>{user.displayName}</span></Title>
+                <Title>Welcome <span style={{ color: '#ff5a26' }}>{user.displayName}</span></Title>
                 {/* <img alt="app" src='images/appLogos/rdportal.png' /> */}
                 <div className='quicklink-cards-wrapper inner'>
                     {/* Clickup */}
@@ -36,7 +42,7 @@ export const Home = () => {
                         >
                             <Meta title="Clockify" description="www.app.clockify.me" />
                         </Card>
-                </a>
+                    </a>
 
                     {/* Discord */}
                     <a href='https://discord.com/channels/@me' target='_blank' className="quicklinks-card">

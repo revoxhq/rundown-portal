@@ -21,7 +21,7 @@ export const AddResource = ({ onAddResource }) => {
                 'description': values.description,
                 'type': values.resourceType,
                 'link': values.url,
-                'accessLevel': values.accesslevel,
+                // 'accessLevel': values.accesslevel,
                 'project': values.project,
                 'date-updated': Date.now()
             })
@@ -130,7 +130,7 @@ export const AddResource = ({ onAddResource }) => {
                             <Input.TextArea />
                         </Form.Item>
 
-                        <Form.Item name="accesslevel" label="Access Level" style={{ marginBottom: "50px" }}
+                        {/* <Form.Item name="accesslevel" label="Access Level" style={{ marginBottom: "50px" }}
                             help={"1: Anyone  |  2: Vistor  |  3: Team Member  |  4: Senior  |  5: Admin"}
                         >
                             <Slider max={5} min={1} defaultValue={3}
@@ -142,7 +142,7 @@ export const AddResource = ({ onAddResource }) => {
                                     5: '5',
                                 }}
                             />
-                        </Form.Item>
+                        </Form.Item> */}
                         <Form.Item
                             name="resourceType"
                             label="Select Resource Type"

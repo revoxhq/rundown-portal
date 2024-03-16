@@ -88,7 +88,7 @@ export const AnimationAssetLibraryModal = ({ onAddResource }) => {
         try {
             await addDoc(resourceListRef, {
                 'assetName': values.assetName,
-                'description': values.description,
+                // 'description': values.description,
                 'project': values.project,
                 'assettype': values.assettype,
                 'assetLink': values.assetUrl,
@@ -160,9 +160,6 @@ export const AnimationAssetLibraryModal = ({ onAddResource }) => {
 
     //--------------
 
-    const onDescriptionorSpecialNotesAdd = (e) => {
-        // console.log('Change:', e.target.value);
-    };
 
 
     const onProjectChange = (e) => {
@@ -257,6 +254,7 @@ export const AnimationAssetLibraryModal = ({ onAddResource }) => {
                             priority: 3,
                             assettype: "Prop",
                             project: "Internal",
+                            specialnotes: "-",
                         }}
                     >
                         <div className='modal-inner'>
@@ -275,10 +273,10 @@ export const AnimationAssetLibraryModal = ({ onAddResource }) => {
                                     <Input />
                                 </Form.Item>
 
-                                {/* Asset Description */}
+                                {/* Asset Description
                                 <Form.Item name={'description'} label="Description">
                                     <TextArea showCount maxLength={100} onChange={onDescriptionorSpecialNotesAdd} />
-                                </Form.Item>
+                                </Form.Item> */}
 
                                 {/* ====================In House Items ======================== */}
                                 <Form.Item
@@ -324,7 +322,7 @@ export const AnimationAssetLibraryModal = ({ onAddResource }) => {
                                     rules={[{ required: true }, { type: 'url', warningOnly: true }, { type: 'string', min: 6 }]}
                                 // style={{ marginTop: "30px" }}
                                 >
-                                    <Input addonBefore="OneDrive Link" placeholder="Asset Folder URL (Ensure all asset items are in one folder)" />
+                                    <Input addonBefore="Asset Link" placeholder="Asset URL (EPIC, UNITY OR ONEDRIVE)" />
                                 </Form.Item>
 
 
@@ -537,8 +535,8 @@ export const AnimationAssetLibraryModal = ({ onAddResource }) => {
                                 />
 
                                 {/* Asset Description */}
-                                <Form.Item name={'specialnotes'} label="Special Notes">
-                                    <TextArea showCount maxLength={100} onChange={onDescriptionorSpecialNotesAdd} />
+                                <Form.Item name="specialnotes" label="Special Notes">
+                                    <TextArea showCount maxLength={100}  />
                                 </Form.Item>
 
                             </div>
