@@ -39,7 +39,6 @@ export const MarketplaceAssetLibraryModal = ({ onAddResource }) => {
     const tagsData = ["Architecture",
         "System",
         "Sci-Fi",
-        "Sci-Fi",
         "Realistic",
         "Low-Poly",
         "Modern",
@@ -79,7 +78,7 @@ export const MarketplaceAssetLibraryModal = ({ onAddResource }) => {
         try {
             await addDoc(resourceListRef, {
                 'assetName': values.assetName,
-                'description': values.description,
+                'project': values.project,
                 'assettype': values.assettype,
                 'source': values.source,
                 'assetLink': values.assetURL,
@@ -103,11 +102,29 @@ export const MarketplaceAssetLibraryModal = ({ onAddResource }) => {
 
     //--------------
 
-    const onDescriptionorSpecialNotesAdd = (e) => {
-        // console.log('Change:', e.target.value);
+
+    const onProjectChange = (e) => {
+        switch (e) {
+            case "Internal":
+                setCurrentClient("Revox")
+                break;
+            case "Spiral":
+                setCurrentClient("Revox")
+                break;
+            case "Starwalker":
+                setCurrentClient("Marius")
+                break;
+            case "Goodness Game":
+                setCurrentClient("Foundation of Goodness")
+                break;
+            case "Other":
+                setCurrentClient("Unknown")
+                break;
+            default:
+                setCurrentClient("Unknown")
+                break;
+        }
     };
-
-
 
 
     //----------------------
@@ -178,7 +195,8 @@ export const MarketplaceAssetLibraryModal = ({ onAddResource }) => {
                             assettype: "Prop",
                             source: "epic",
                             project: "Internal",
-                            assetCategory: "3D Animation"
+                            assetCategory: "3D Animation",
+                            specialnotes:"-"
                         }}
                     >
                         <div className='modal-inner'>
@@ -197,11 +215,20 @@ export const MarketplaceAssetLibraryModal = ({ onAddResource }) => {
                                     <Input />
                                 </Form.Item>
 
-                                {/* Asset Description */}
-                                <Form.Item name={'description'} label="Description">
-                                    <TextArea showCount maxLength={100} onChange={onDescriptionorSpecialNotesAdd} />
-                                </Form.Item>
 
+
+                                <Form.Item
+                                    name="project"
+                                    label="Project"
+                                >
+                                    <Select placeholder="Select a project" defaultValue={'Internal'} onChange={onProjectChange}>
+                                        <Option value="Internal">Internal</Option>
+                                        <Option value="Spiral">Spiral</Option>
+                                        <Option value="Starwalker">Starwalker</Option>
+                                        <Option value="Goodnessgame">Goodness Game</Option>
+                                        <Option value="Other">Other</Option>
+                                    </Select>
+                                </Form.Item>
                                 {/* ====================In House Items ======================== */}
                                 <Form.Item
                                     name="source"
@@ -297,8 +324,8 @@ export const MarketplaceAssetLibraryModal = ({ onAddResource }) => {
                                 <Empty />
 
                                 {/* Asset Description */}
-                                <Form.Item name={'specialnotes'} label="Special Notes">
-                                    <TextArea showCount maxLength={100} onChange={onDescriptionorSpecialNotesAdd} />
+                                <Form.Item name="specialnotes" label="Special Notes">
+                                    <TextArea showCount maxLength={100}  />
                                 </Form.Item>
 
                             </div>
