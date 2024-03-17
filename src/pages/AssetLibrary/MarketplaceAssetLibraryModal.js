@@ -191,7 +191,6 @@ export const MarketplaceAssetLibraryModal = ({ onAddResource }) => {
                         autoComplete="off"
                         layout='vertical'
                         initialValues={{
-                            priority: 3,
                             assettype: "Prop",
                             source: "epic",
                             project: "Internal",

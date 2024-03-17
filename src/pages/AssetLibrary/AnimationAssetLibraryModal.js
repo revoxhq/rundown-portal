@@ -20,7 +20,6 @@ export const AnimationAssetLibraryModal = ({ onAddResource }) => {
     const [open, setOpen] = useState(false);
     const [confirmLoading, setConfirmLoading] = useState(false);
     const [modalText, setModalText] = useState('Content of the modal');
-    const [priorityLevel, setPriorityLevel] = useState('Priority: Moderate');
     const { Text, Link } = Typography;
     const { Option } = Select;
     const { Title } = Typography;
@@ -92,7 +91,6 @@ export const AnimationAssetLibraryModal = ({ onAddResource }) => {
                 'project': values.project,
                 'assettype': values.assettype,
                 'assetLink': values.assetUrl,
-                'priority': values.priority,
                 'dateUpdated': Date.now(),
                 'pipeline': JSON.stringify(pipelineAssignees),
                 'tags': selectedTags,
@@ -111,29 +109,6 @@ export const AnimationAssetLibraryModal = ({ onAddResource }) => {
 
 
 
-
-    const onChangePriority = (value) => {
-        switch (value) {
-            case 1:
-                setPriorityLevel("Priority: Very Low");
-                break;
-            case 2:
-                setPriorityLevel("Priority: Low");
-                break;
-            case 3:
-                setPriorityLevel("Priority: Moderate");
-                break;
-            case 4:
-                setPriorityLevel("Priority: High");
-                break;
-            case 5:
-                setPriorityLevel("Priority: Urgent");
-                break;
-            default:
-                setPriorityLevel("Priority: Moderate");
-                break;
-        }
-    };
 
 
     //---------------------
@@ -251,7 +226,6 @@ export const AnimationAssetLibraryModal = ({ onAddResource }) => {
                         autoComplete="off"
                         layout='vertical'
                         initialValues={{
-                            priority: 3,
                             assettype: "Prop",
                             project: "Internal",
                             specialnotes: "-",
@@ -325,18 +299,6 @@ export const AnimationAssetLibraryModal = ({ onAddResource }) => {
                                     <Input addonBefore="Asset Link" placeholder="Asset URL (EPIC, UNITY OR ONEDRIVE)" />
                                 </Form.Item>
 
-
-                                <Form.Item name="priority" label={priorityLevel} style={{ marginBottom: "20px" }}>
-                                    <Slider max={5} min={1} defaultValue={3} onChange={onChangePriority} initialValues={3}
-                                        marks={{
-                                            1: '1',
-                                            2: '2',
-                                            3: '3',
-                                            4: '4',
-                                            5: '5',
-                                        }}
-                                    />
-                                </Form.Item>
 
 
 

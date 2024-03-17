@@ -20,7 +20,6 @@ export const AssetLibraryModal = ({ onAddResource }) => {
     const [open, setOpen] = useState(false);
     const [confirmLoading, setConfirmLoading] = useState(false);
     const [modalText, setModalText] = useState('Content of the modal');
-    const [priorityLevel, setPriorityLevel] = useState('Priority: Moderate');
     const { Text, Link } = Typography;
     const { Option } = Select;
     const { Title } = Typography;
@@ -95,7 +94,6 @@ export const AssetLibraryModal = ({ onAddResource }) => {
                 'assettype': values.assettype,
                 'assetLink': values.assetUrl,
                 'conceptArtUrl': values.cocneptUrl,
-                'priority': values.priority,
                 'pipeline': JSON.stringify(pipelineAssignees),
                 'tags': selectedTags,
                 'client': currentClient,
@@ -114,29 +112,6 @@ export const AssetLibraryModal = ({ onAddResource }) => {
 
 
 
-
-    const onChangePriority = (value) => {
-        switch (value) {
-            case 1:
-                setPriorityLevel("Priority: Very Low");
-                break;
-            case 2:
-                setPriorityLevel("Priority: Low");
-                break;
-            case 3:
-                setPriorityLevel("Priority: Moderate");
-                break;
-            case 4:
-                setPriorityLevel("Priority: High");
-                break;
-            case 5:
-                setPriorityLevel("Priority: Urgent");
-                break;
-            default:
-                setPriorityLevel("Priority: Moderate");
-                break;
-        }
-    };
 
 
     //---------------------
@@ -252,7 +227,6 @@ export const AssetLibraryModal = ({ onAddResource }) => {
                         autoComplete="off"
                         layout='vertical'
                         initialValues={{
-                            priority: 3,
                             assettype: "Prop",
                             project: "Internal",
                             specialnotes:"-"
@@ -328,18 +302,6 @@ export const AssetLibraryModal = ({ onAddResource }) => {
                                     <Input addonBefore="OneDrive Link" placeholder="Asset Folder URL (Ensure all asset items are in one folder)" />
                                 </Form.Item>
 
-
-                                <Form.Item name="priority" label={priorityLevel} style={{ marginBottom: "20px" }}>
-                                    <Slider max={5} min={1} defaultValue={3} onChange={onChangePriority} initialValues={3}
-                                        marks={{
-                                            1: '1',
-                                            2: '2',
-                                            3: '3',
-                                            4: '4',
-                                            5: '5',
-                                        }}
-                                    />
-                                </Form.Item>
 
 
 

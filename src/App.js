@@ -2,6 +2,7 @@
 import './App.css';
 
 import { AssetLibrary } from "./pages/AssetLibrary/AssetLibrary"
+import { EditAsset } from "./pages/AssetLibrary/AssetActions/EditAsset"
 import { DocumentLibrary } from "./pages/DocumentLibrary/DocumentLibrary"
 import { ResourceLibrary } from "./pages/ResourceLibrary/ResourceLibrary"
 import { AddResource } from "./pages/ResourceLibrary/AddResource"
@@ -26,6 +27,7 @@ function App() {
             <Route path='/' element={<Home />} />
             <Route path='/login' element={<Login />} />
             <Route path='/assets' element={<AssetLibrary />} />
+            <Route path='/assets/edit' element={<EditAsset />} />
             <Route path='/documents' element={<DocumentLibrary />} />
             <Route path='/resources' element={<ResourceLibrary />} />
             <Route path='/resources/add' element={<AddResource />} />
