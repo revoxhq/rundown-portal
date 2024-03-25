@@ -61,6 +61,7 @@ export const MarketplaceAssetLibraryModal = ({ onAddResource }) => {
         "Construction",
         "Food",
         "Sports",
+        "Military",
         "Medical"];
     //------------------------
 
