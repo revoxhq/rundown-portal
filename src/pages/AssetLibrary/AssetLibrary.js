@@ -2,11 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { AssetLibraryModal } from "./AssetLibraryModal"
 import { MarketplaceAssetLibraryModal } from "./MarketplaceAssetLibraryModal"
 import { AnimationAssetLibraryModal } from "./AnimationAssetLibraryModal"
-import { Typography, Tag, Button, Input } from 'antd';
-import { LinkOutlined, CheckCircleOutlined, DollarOutlined, HddOutlined } from '@ant-design/icons';
+import { Typography, Button, Input } from 'antd';
+import { LinkOutlined, CheckCircleOutlined, DollarOutlined, DeleteOutlined, FolderOpenOutlined, EditOutlined } from '@ant-design/icons';
 import { db, auth } from "../../config/firebase";
 import { getDocs, collection } from 'firebase/firestore'
 import { Navigate } from 'react-router-dom';
+import { sort } from 'fast-sort';
 
 const { Title, Text } = Typography;
 const { Search } = Input;
@@ -19,6 +20,21 @@ export const AssetLibrary = () => {
     const [allAssetData, setAssetData] = useState([]);
     const [assetSearchData, setSearchData] = useState([]);
     const user = auth.currentUser;
+
+
+    const filterAllData = (allRefData) => {
+
+        allRefData.forEach(list => {
+            list.forEach(asset => {
+                setAssetData(allAssetData => [...allAssetData, asset]);
+                setSearchData(assetSearchData => [...assetSearchData, asset]);
+            });
+        });
+        // let sortedFilteredData = sort(assetSearchData).desc(u => u["date-updated"])
+        setSearchData(assetSearchData => sort(assetSearchData).desc(u => u["date-updated"]));
+
+    }
+
 
     useEffect(() => {
         const getRefList = async () => {
@@ -99,17 +115,10 @@ export const AssetLibrary = () => {
     }
 
     if (!user) {
-        return <Navigate to="/" replace={true} />
+        return <Navigate to="/login" replace={true} />
     }
 
-    const filterAllData = (allRefData) => {
-        allRefData.forEach(list => {
-            list.forEach(asset => {
-                setAssetData(allAssetData => [...allAssetData, asset]);
-                setSearchData(assetSearchData => [...assetSearchData, asset]);
-            });
-        });
-    }
+
 
     const onSearching = (e) => {
         setSearchData([]);
@@ -153,9 +162,6 @@ export const AssetLibrary = () => {
                     <>
                         {asset.group == "Market" ? (
                             <div key={asset.id} className='asset-list-item'>
-                                <div className='asset-icon-wrapper'>
-                                    {/* <MessageOutlined style={{ fontSize: '75px' }} /> */}
-                                </div>
                                 <div className='asset-name-wrapper'>
                                     <a href={asset.assetLink} target='_blank'>
                                         <Title level={5}>{asset.assetName} </Title>
@@ -181,15 +187,13 @@ export const AssetLibrary = () => {
                                     ))}
                                 </div> */}
                                 <div className='asset-actions-wrapper'>
-                                    <Button>View</Button>
-                                    <Button type="link">Edit</Button>
+                                    <Button type="link"><FolderOpenOutlined /></Button>
+                                    <Button type="link"><EditOutlined /></Button>
+                                    <Button type="link"><DeleteOutlined /></Button>
                                 </div>
                             </div>
                         ) : asset.group == "Animation" ? (
                             <div key={asset.id} className='asset-list-item'>
-                                <div className='asset-icon-wrapper'>
-                                    {/* <ClockCircleOutlined style={{ fontSize: '75px' }} /> */}
-                                </div>
                                 <div className='asset-name-wrapper'>
                                     <div className='asset-name-inner-wrapper'>
                                         <a href='#'>
@@ -202,8 +206,8 @@ export const AssetLibrary = () => {
                                 <div className='asset-type-wrapper'>
                                     <Title level={5}>Animation</Title>
                                     <div className='asset-type-inner-wrapper'>
-                                        <Text type="secondary">{asset.currentProgress.step} <CheckCircleOutlined /></Text>
-                                        <Text type="secondary">{asset.currentProgress.assignee} </Text>
+                                        <Text type="secondary">{asset.currentProgress?.step} <CheckCircleOutlined /></Text>
+                                        <Text type="secondary">{asset.currentProgress?.assignee} </Text>
 
                                     </div>
                                 </div>
@@ -219,48 +223,43 @@ export const AssetLibrary = () => {
                                     ))}
                                 </div> */}
                                 <div className='asset-actions-wrapper'>
-                                    <Button>View</Button>
-                                    <Button type="link">Edit</Button>
+                                    <Button type="link"><FolderOpenOutlined /></Button>
+                                    <Button type="link"><EditOutlined /></Button>
+                                    <Button type="link"><DeleteOutlined /></Button>
                                 </div>
                             </div>
-                        ) : (
-                            <div key={asset.id} className='asset-list-item'>
-                                <div className='asset-icon-wrapper'>
-                                    {/* <ClockCircleOutlined style={{ fontSize: '75px' }} /> */}
-                                </div>
-                                <div className='asset-name-wrapper'>
-                                    <div className='asset-name-inner-wrapper'>
-                                        <a href={asset.assetLink} target='_blank'>
-                                            <Title level={5}>{asset.assetName} </Title>
-                                        </a>
-                                        <a href={asset.conceptArtUrl} target='_blank'><LinkOutlined /></a>
+                        )
+                            : (
+                                <div key={asset.id} className='asset-list-item'>
+                                    <div className='asset-name-wrapper'>
+                                        <div className='asset-name-inner-wrapper'>
+                                            <a href={asset.assetLink} target='_blank'>
+                                                <Title level={5}>{asset.assetName} </Title>
+                                            </a>
+                                            <a href={asset.conceptArtUrl} target='_blank'><LinkOutlined /></a>
+                                        </div>
+                                        <Text type="secondary">{asset.assettype}</Text>
                                     </div>
-                                    <Text type="secondary">{asset.assettype}</Text>
-                                </div>
-                                <div className='asset-type-wrapper'>
-                                    <Title level={5}>3D Model</Title>
-                                    <div className='asset-type-inner-wrapper'>
-                                        <Text type="secondary">{asset.currentProgress.step} <CheckCircleOutlined /></Text>
-                                        <Text type="secondary">{asset.currentProgress.assignee} </Text>
+                                    <div className='asset-type-wrapper'>
+                                        <Title level={5}>3D Model</Title>
+                                        <div className='asset-type-inner-wrapper'>
+                                            <Text type="secondary">{asset.currentProgress?.step} <CheckCircleOutlined /></Text>
+                                            <Text type="secondary">{asset.currentProgress?.assignee} </Text>
+                                        </div>
+                                    </div>
+                                    <div className='asset-project-wrapper'>
+                                        <Title level={5}>{asset.project}</Title>
+                                        <Text type="secondary">{asset.client}</Text>
+                                    </div>
+
+                                    <div className='asset-actions-wrapper'>
+                                        <Button type="link"><FolderOpenOutlined /></Button>
+                                        <Button type="link"><EditOutlined /></Button>
+                                        <Button type="link"><DeleteOutlined /></Button>
                                     </div>
                                 </div>
-                                <div className='asset-project-wrapper'>
-                                    <Title level={5}>{asset.project}</Title>
-                                    <Text type="secondary">{asset.client}</Text>
-                                </div>
-                                {/* <div className='asset-tags-wrapper'>
-                                    {asset.tags.map((tag) => (
-                                        <Tag key={tag} bordered={false} color="processing">
-                                            {tag}
-                                        </Tag>
-                                    ))}
-                                </div> */}
-                                <div className='asset-actions-wrapper'>
-                                    <Button>View</Button>
-                                    <Button type="link">Edit</Button>
-                                </div>
-                            </div>
-                        )}
+                            )
+                        }
                     </>
                 ))}
             </div>

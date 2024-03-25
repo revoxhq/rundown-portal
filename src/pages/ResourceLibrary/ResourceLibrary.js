@@ -255,7 +255,7 @@ export const ResourceLibrary = () => {
     }
 
     if (!user) {
-        return <Navigate to="/" replace={true} />
+        return <Navigate to="/login" replace={true} />
     }
 
     return (

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { auth, googleProvider } from "../config/firebase";
 import { createUserWithEmailAndPassword, signInWithPopup, signOut } from "firebase/auth";
 import { Button, Form, Input, Tooltip, Space } from 'antd';
@@ -9,9 +9,14 @@ import { Navigate } from 'react-router-dom';
 
 export const Auth = () => {
 
+
     // const user = auth.currentUser;
     const [logingError, setError] = useState(false);
     const [user, setUser] = useState(auth.currentUser);
+
+    // useEffect(() => {
+    //     auth().onAuthStateChanged(setUser)
+    // }, [])
 
     const signInwithGoogle = async () => {
         try {
@@ -28,7 +33,7 @@ export const Auth = () => {
 
     if (user || auth.currentUser) {
         console.log(auth.currentUser);
-        return <Navigate to="/home" replace={true} />
+        return <Navigate to="/" replace={true} />
     }
 
     return (
