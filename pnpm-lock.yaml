@@ -23,12 +23,18 @@ dependencies:
   antd:
     specifier: ^5.8.4
     version: 5.11.0(react-dom@18.2.0)(react@18.2.0)
+  es6-promise-pool:
+    specifier: ^2.5.0
+    version: 2.5.0
   fast-sort:
     specifier: ^3.4.0
     version: 3.4.0
   firebase:
     specifier: ^10.3.0
     version: 10.5.2
+  nodemailer:
+    specifier: ^6.9.7
+    version: 6.9.13
   react:
     specifier: ^18.2.0
     version: 18.2.0
@@ -5413,6 +5419,11 @@ packages:
       is-symbol: 1.0.4
     dev: false
 
+  /es6-promise-pool@2.5.0:
+    resolution: {integrity: sha512-VHErXfzR/6r/+yyzPKeBvO0lgjfC5cbDCQWjWwMZWSb6YU39TGIl51OUmCfWCq4ylMdJSB8zkz2vIuIeIxXApA==}
+    engines: {node: '>=0.10.0'}
+    dev: false
+
   /escalade@3.1.1:
     resolution: {integrity: sha512-k0er2gUkLf8O0zKJiAhmkTnJlTvINGv7ygDNPbeIsX/TJjGJZHuh9B2UxbsaEkmlEo9MfhrSzmhIlhRlI2GXnw==}
     engines: {node: '>=6'}
@@ -8139,6 +8150,11 @@ packages:
 
   /node-releases@2.0.13:
     resolution: {integrity: sha512-uYr7J37ae/ORWdZeQ1xxMJe3NtdmqMC/JZK+geofDrkLUApKRHPd18/TxtBOJ4A0/+uUIliorNrfYV6s1b02eQ==}
+    dev: false
+
+  /nodemailer@6.9.13:
+    resolution: {integrity: sha512-7o38Yogx6krdoBf3jCAqnIN4oSQFx+fMa0I7dK1D+me9kBxx12D+/33wSb+fhOCtIxvYJ+4x4IMEhmhCKfAiOA==}
+    engines: {node: '>=6.0.0'}
     dev: false
 
   /normalize-path@3.0.0:
