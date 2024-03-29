@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Button, Modal, Form, Input, Slider, Select, Typography, Progress, Radio, Space, Tag, Steps } from 'antd';
+import { Button, Modal, Form, Input, Slider, Select, Typography, Cascader, Radio, Space, Tag, Steps } from 'antd';
 import { addDoc, collection } from 'firebase/firestore';
 import { db } from "../../config/firebase";
 import { PlusCircleOutlined, CheckOutlined, UserOutlined, MehOutlined, PlusOutlined } from '@ant-design/icons';
@@ -46,6 +46,28 @@ export const AssetLibraryModal = ({ onAddResource }) => {
 
     const { CheckableTag } = Tag;
 
+    const PCOwnerOptions = [
+        {
+            value: 'buddhika',
+            label: 'Buddhika',
+        },
+        {
+            value: 'thisara',
+            label: 'Thisara',
+
+        },
+        {
+            value: 'chalaka',
+            label: 'Chalaka',
+
+        },
+        {
+            value: 'hansaka',
+            label: 'Hansaka',
+
+        },
+    ];
+
     const tagsData = ["Architecture",
         "Sci-Fi",
         "Realistic",
@@ -77,10 +99,7 @@ export const AssetLibraryModal = ({ onAddResource }) => {
 
     const onFinish = (values) => {
         console.log('Submitting:', values);
-        console.log('currentProgress:', currentProgress);
-        console.log('pipelineAssignees:', JSON.stringify(pipelineAssignees));
-        console.log('tags:', selectedTags);
-        console.log('client:', currentClient);
+
         onSubmitForm(values);
     };
     const onFinishFailed = (errorInfo) => {
@@ -93,6 +112,8 @@ export const AssetLibraryModal = ({ onAddResource }) => {
                 'project': values.project,
                 'assettype': values.assettype,
                 'assetLink': values.assetUrl,
+                'localURL': values.localURL,
+                'pcOwner': values.pcOwner[0],
                 'conceptArtUrl': values.cocneptUrl,
                 'pipeline': JSON.stringify(pipelineAssignees),
                 'tags': selectedTags,
@@ -229,7 +250,7 @@ export const AssetLibraryModal = ({ onAddResource }) => {
                         initialValues={{
                             assettype: "Prop",
                             project: "Internal",
-                            specialnotes:"-"
+                            specialnotes: "-"
 
                         }}
                     >
@@ -302,7 +323,23 @@ export const AssetLibraryModal = ({ onAddResource }) => {
                                     <Input addonBefore="OneDrive Link" placeholder="Asset Folder URL (Ensure all asset items are in one folder)" />
                                 </Form.Item>
 
-
+                                <Form.Item
+                                    name="localURL"
+                                    label="Local PC Folder Path"
+                                    rules={[{ required: true }, { type: 'string', min: 6 }]}
+                                >
+                                    <Input
+                                        addonBefore={
+                                            <Form.Item
+                                                name="pcOwner"
+                                                style={{ marginBottom: "0px" }}
+                                            >
+                                                <Cascader placeholder="Owner" options={PCOwnerOptions} style={{ width: 150 }} />
+                                            </Form.Item>
+                                        }
+                                        placeholder="C:\Users\Revox\Documents"
+                                    />
+                                </Form.Item>
 
 
                                 {/* //-------------------Tags---------------------- */}
@@ -503,7 +540,7 @@ export const AssetLibraryModal = ({ onAddResource }) => {
 
 
                                 <Form.Item name="specialnotes" label="Special Notes" >
-                                    <TextArea  maxLength={100}/>
+                                    <TextArea maxLength={100} />
                                 </Form.Item>
 
                             </div>

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Button, Modal, Form, Input, Slider, Select, Typography, Progress, Radio, Space, Tag, Steps } from 'antd';
+import { Button, Modal, Form, Input, Slider, Select, Typography, Cascader, Radio, Space, Tag, Steps } from 'antd';
 import { addDoc, collection } from 'firebase/firestore';
 import { db } from "../../config/firebase";
 import { PlusCircleOutlined, CheckOutlined, UserOutlined, MehOutlined, PlusOutlined } from '@ant-design/icons';
@@ -49,6 +49,28 @@ export const AnimationAssetLibraryModal = ({ onAddResource }) => {
 
     const { CheckableTag } = Tag;
 
+    const PCOwnerOptions = [
+        {
+            value: 'buddhika',
+            label: 'Buddhika',
+        },
+        {
+            value: 'thisara',
+            label: 'Thisara',
+
+        },
+        {
+            value: 'chalaka',
+            label: 'Chalaka',
+
+        },
+        {
+            value: 'hansaka',
+            label: 'Hansaka',
+
+        },
+    ];
+
     const tagsData = ["Architecture",
         "Sci-Fi",
         "Realistic",
@@ -91,6 +113,8 @@ export const AnimationAssetLibraryModal = ({ onAddResource }) => {
                 'project': values.project,
                 'assettype': values.assettype,
                 'assetLink': values.assetUrl,
+                'localURL': values.localURL,
+                'pcOwner': values.pcOwner[0],
                 'dateUpdated': Date.now(),
                 'pipeline': JSON.stringify(pipelineAssignees),
                 'tags': selectedTags,
@@ -300,7 +324,23 @@ export const AnimationAssetLibraryModal = ({ onAddResource }) => {
                                 </Form.Item>
 
 
-
+                                <Form.Item
+                                    name="localURL"
+                                    label="Local PC Folder Path"
+                                    rules={[{ required: true }, { type: 'string', min: 6 }]}
+                                >
+                                    <Input
+                                        addonBefore={
+                                            <Form.Item
+                                                name="pcOwner"
+                                                style={{ marginBottom: "0px" }}
+                                            >
+                                                <Cascader placeholder="Owner" options={PCOwnerOptions} style={{ width: 150 }} />
+                                            </Form.Item>
+                                        }
+                                        placeholder="C:\Users\Revox\Documents"
+                                    />
+                                </Form.Item>
 
                                 {/* //-------------------Tags---------------------- */}
                                 <Text className="m-b-10">Choose Tags</Text>
@@ -498,7 +538,7 @@ export const AnimationAssetLibraryModal = ({ onAddResource }) => {
 
                                 {/* Asset Description */}
                                 <Form.Item name="specialnotes" label="Special Notes">
-                                    <TextArea showCount maxLength={100}  />
+                                    <TextArea showCount maxLength={100} />
                                 </Form.Item>
 
                             </div>
