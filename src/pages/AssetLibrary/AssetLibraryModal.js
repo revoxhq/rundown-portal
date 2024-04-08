@@ -93,6 +93,9 @@ export const AssetLibraryModal = ({ onAddResource }) => {
         "Sports",
         "Medical",
         "Survival",
+        "Combat",
+        "Wildlife",
+        "Water"
 
     ];
     //------------------------

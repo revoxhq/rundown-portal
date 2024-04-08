@@ -62,7 +62,10 @@ export const MarketplaceAssetLibraryModal = ({ onAddResource }) => {
         "Sports",
         "Military",
         "Medical",
-        "Survival"
+        "Survival",
+        "Combat",
+        "Wildlife",
+        "Water"
     ];
     //------------------------
 
