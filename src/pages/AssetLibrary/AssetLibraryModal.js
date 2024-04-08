@@ -299,7 +299,7 @@ export const AssetLibraryModal = ({ onAddResource }) => {
                                         <Option value="Electronic">Electronic</Option>
                                         <Option value="Vehicle">Vehicle</Option>
                                         <Option value="Character">Character</Option>
-                                        <Option value="Character">Creature</Option>
+                                        <Option value="Creature">Creature</Option>
                                         <Option value="Animal">Animal</Option>
                                         <Option value="Weapon">Weapon</Option>
                                         <Option value="Furniture">Furniture</Option>
